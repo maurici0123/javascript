@@ -20,8 +20,11 @@
 <body>
     <h1>olá mundo!</h1>
     <script>
-      var name =  window.prompt('qual seu nome?')
-      window.alert('prazer em conheçer' + name + '!')
+      var n1 =  Number.parseInt(window.prompt('informe um numero'))
+      var n2 =  Number.parseFloat(window.prompt('informe outro numero'))
+      var n3 =  Number(window.prompt('informe outro numero'))
+      var s = n1 + n2 + n3
+      window.alert('a soma dos numeros e ' + String(s))
     </script>
 </body>
 </html>
