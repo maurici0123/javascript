@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <style>
+        body{
+            background-color: rgb(121, 168, 212);
+            color: white;
+            font: normal 18pt arial;
+        }
+    </style>
+</head>
+<body>
+    <h1>iniciando estudos DOM</h1>
+    <p>aqui vai o resultado</p>
+    <p class="para">aprendendo <strong>DOM</strong> em JavaScript</p>
+    <div id="msg">clica em mim</div>
+    <script>
+        document.write('ola, mundo! <br>')
+        p1 = document.getElementsByTagName('p')[0]
+        document.write(p1.innerText)
+        p1.style.color = 'black'
+        d = document.getElementById('msg')
+        d.style.textDecoration = 'underline'
+        pa = document.querySelector('p.para')
+        pa.style.color = 'yellow'
+        
+    </script>
+</body>
+</html>
