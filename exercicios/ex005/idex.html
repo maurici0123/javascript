@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pais</title>
+</head>
+<body>
+    <label for="pais">qual pais? </label>
+    <input type="text" name="pais" id="pais">
+    <input type="button" value="botao" id="botao" onclick="clicar()">
+    <div id="res"></div>
+
+    <script>
+       function clicar() {
+        p = document.getElementById("pais")
+        b = document.getElementById("botao")
+        res = document.getElementById("res")
+        boe = (p.value)
+
+        if (boe == "brasil" || boe == "Brasil") {
+            res.innerText = ("voce e brasileiro")
+        }else{
+            res.innerText = ("voce e estrangeiro")
+        }
+       }
+    </script>
+</body>
+</html>
