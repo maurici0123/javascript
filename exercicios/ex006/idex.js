@@ -8,3 +8,7 @@ do {
     console.log(`ate ${c}`)
     c++
 } while (c <= 20)
+
+for (c = c;c <= 30;c++) {
+    console.log(`number ${c}`)
+}
