@@ -4,12 +4,29 @@ function clicar() {
     passo = document.getElementById('ipasso')
     res = document.getElementById("res")
 
-    comeco = Number(inicio.value)
-    final = Number(fim.value)
-    cont = Number(passo.value)
+   if (inicio.value.length == 0 || fim.value.length == 0 || passo.value.length == 0) {
+    res.innerHTML = `impossivel contar`
+   } else {
 
-    while (comeco <= final) {
-        res.innerHTML = comeco
-        comeco += cont
+    i = Number(inicio.value)
+    f = Number(fim.value)
+    p = Number(passo.value)
+    res.innerHTML = `contando...`
+
+    if (p <= 0) {
+        alert('seu contador foi considerado como 1')
+        p = 1
     }
+
+    if (i < f) {
+        for (c = i; c <= f; c += p) {
+            res.innerHTML += `👉 ${c}`
+        }
+    } else {
+        for (c = i; c >= f; c -= p) {
+            res.innerHTML += `&#x1F449; ${c}`
+        }
+    }
+    res.innerHTML += `\u{1F3C1}`
+   }
 }
