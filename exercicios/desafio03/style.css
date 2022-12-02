@@ -4,7 +4,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 body{
-    background-color: #747474;
+    background-color: #1e1f2b;
 }
 h1{
     font-size: 40px;
@@ -18,7 +18,7 @@ section{
     width: 600px;
     margin: auto;
     border-radius: 15px;
-    box-shadow: 3px 3px 5px rgba(37, 37, 37, 0.507);
+    box-shadow: 0px 0px 50px rgba(111, 0, 255, 0.5), 0px 0px 100px rgba(111, 0, 255);
     padding: 10px;
 }
 p{
@@ -36,4 +36,10 @@ footer{
     text-align: center;
     padding: 15px;
     color: #fff;
+}
+
+@media screen and (max-width: 640px){
+    section{
+        width: 380px;
+    }
 }

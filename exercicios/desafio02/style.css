@@ -25,3 +25,9 @@ section{
     border-radius: 10px;
     margin: auto;
 }
+
+@media screen and (max-width: 510px) {
+    section{
+        width: 380px;
+    }
+}
