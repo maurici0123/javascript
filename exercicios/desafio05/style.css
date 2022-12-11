@@ -1,0 +1,34 @@
+body{
+    background-color: #1E1F2B;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header{
+    margin-top: 5%;
+}
+
+header, footer{
+    text-align: center;
+    color: #fff;
+}
+
+section{
+    width: 450px;
+    border-radius: 10px;
+    padding: 15px;
+    margin: auto;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px #2323ff, 0px 0px 30px #2323ff, 0px 0px 60px #2323ff;
+    padding-bottom: 30px;
+}
+
+select{
+    width: 130px;
+}
+select::-webkit-scrollbar{
+    width: 0;
+}
+
+footer{
+    font-style: italic;
+}
