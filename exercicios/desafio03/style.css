@@ -7,6 +7,7 @@ body{
     background-color: #1e1f2b;
 }
 h1{
+    margin-top: 7%;
     font-size: 40px;
     text-align: center;
     padding: 50px 0px 30px 0px;
@@ -40,6 +41,6 @@ footer{
 
 @media screen and (max-width: 640px){
     section{
-        width: 380px;
+        width: 370px;
     }
 }

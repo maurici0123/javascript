@@ -4,7 +4,7 @@ body{
 }
 
 header{
-    margin-top: 5%;
+    margin-top: 10%;
 }
 
 header, footer{
@@ -31,4 +31,9 @@ select::-webkit-scrollbar{
 
 footer{
     font-style: italic;
+}
+@media screen and (max-width: 500px) {
+    section{
+        width: 370px;
+    }
 }
