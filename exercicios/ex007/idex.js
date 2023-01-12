@@ -4,11 +4,12 @@
     num.sort() == deixa o vetor em ordem crescente
     num = [5, 6, 1, 9, 3, 7]
     num[5] == posição 0
-    indexOF(9) == 3
-    indexOF(2) == -1
+    num.indexOF(9) == 3
+    num.indexOF(2) == -1
 */
 
 num = [8, 6, 9, 2, 5, 1, 4, 7]
+console.log(num.length)
 console.log(`${num[1]}`)
 
 /*
