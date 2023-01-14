@@ -1,4 +1,4 @@
-/* determinante de matriz 2x2*/
+/* determinante de matriz 2x2 */
 
 mat1 = [[1,2],
         [3,4]]

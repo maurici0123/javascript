@@ -1,4 +1,4 @@
-/* determinante de matriz 3x3*/
+/* determinante de matriz 3x3 */
 
 mat1 = [[1,2,3],
         [4,5,6],
