@@ -15,6 +15,9 @@ people = {
     idade : 45,
     olho : 'verde',
     emprego : 'medico', 
+    nomeCompleto() {
+        return `${people.nome} machado`
+    }
 }
 
 //concatenando uma propiedade//
@@ -25,7 +28,7 @@ pessoa2.nomeCompleto = function() {
     return this.nome + ' silva' 
 }
 
-//criaamdo uma propiedade//
+//criando uma propiedade//
 pessoa1.altura = 1.8
 delete pessoa1.altura
 
@@ -36,7 +39,10 @@ perfil.prototype.lingua = 'portugues'
 pes2 = Object.values(pessoa2)
 
 console.log(pessoa1)
+console.log(pessoa1.lingua)
+console.log(pessoa2)
 console.log(pessoa2.nomeCompleto())
+console.log(people.nomeCompleto())
 console.log(people)
 console.log(pes2)
 console.log(pes2[2])
