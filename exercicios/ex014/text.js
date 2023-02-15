@@ -33,4 +33,19 @@ const ip = `
 255.255.255.255
 `
 
-export {text, arquivo, html, alfabeto, cpf, ip}
+const  html2  =  `<p
+data-teste='teste'
+class="teste teste">
+Olá mundo
+</p> <p>Olá mundo</p> <div>Sou a div</div>`
+
+const lookahead = `
+ONLINE 192.168.0.1 ABCDEF inativo
+OFFLINE 192.168.0.2 ABCDEF ativo
+ONLINE 192.168.0.3 ABCDEF ativo
+ONLINE 192.168.0.4 ABCDEF ativo
+OFFLINE 192.168.0.5 ABCDEF ativo
+OFFLINE 192.168.0.6 ABCDEF inativo
+`
+
+export {text, arquivo, html, alfabeto, cpf, ip, lookahead, html2}
