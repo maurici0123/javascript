@@ -19,7 +19,6 @@ function btn_click(){
 
     // mandar pedido
     pedido.open('get', 'text.txt', true)
-    //pedido.open('get', 'processar.php?n=joao&a=frota', true)
 
     // enviar pedido
     pedido.send()

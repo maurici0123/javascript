@@ -7,8 +7,15 @@ function executar(){
 
             dados = this.responseXML
             clientes = dados.getElementsByTagName("cliente")
+            conteudo = ''
             
-            alert(clientes.length)
+            for(let i=0; i<clientes.length; i++){
+                conteudo += '<p>nome: '+ clientes[i].getElementsByTagName("nome")[0].childNodes[0].nodeValue +'</p>'
+                conteudo += '<p>contato: '+ clientes[i].getElementsByTagName("contato")[0].childNodes[0].nodeValue +'</p>'
+                conteudo += '<hr>'
+            }
+
+            document.getElementById('caixa1').innerHTML = conteudo
         }
     }
 
