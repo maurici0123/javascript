@@ -1,0 +1,27 @@
+#click{
+    width: 200px;
+    height: 200px;
+    background-color: black;
+    margin: auto;
+}
+#hover{
+    width: 200px;
+    height: 200px;
+    background-color: rgb(255, 0, 0);
+    margin: auto;
+}
+#select, p{
+    display: block;
+    margin: auto;
+    text-align: center;
+    padding: 5px;
+}
+#blur{
+    margin: auto;
+    display: block;
+}
+input{
+    padding: 5px;
+    margin: auto;
+    display: block;
+}
