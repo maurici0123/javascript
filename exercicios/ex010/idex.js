@@ -39,6 +39,7 @@ perfil.prototype.lingua = 'portugues'
 pes2 = Object.values(pessoa2)
 
 console.log(pessoa1)
+console.table(pessoa1)
 console.log(pessoa1.lingua)
 console.log(pessoa2)
 console.log(pessoa2.nomeCompleto())
