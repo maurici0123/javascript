@@ -1,3 +1,4 @@
+//import { soma, num } from "./script2.js";
 import * as fun from "./script2.js"
 import { num as n } from "./script2.js"
 

@@ -1,9 +1,9 @@
 
-function perfil(name, seg, ter, qua) {
-    this.nome= name,
-    this.idade = seg,
-    this.olho = ter,
-    this.emprego = qua
+function perfil(var1, var2, var3, var4) {
+    this.nome= var1,
+    this.idade = var2,
+    this.olho = var3,
+    this.emprego = var4
 }
 
 pessoa1 = new perfil('daniel', 25, 'azul', 'engenheiro')

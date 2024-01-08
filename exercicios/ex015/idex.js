@@ -13,7 +13,7 @@ str = `[
         "age": 41,
         "job": "astronaut",
         "city": "california"
-    } 
+    }
 ]`
 console.log(str)
 console.log(typeof(str))

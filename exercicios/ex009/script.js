@@ -8,6 +8,7 @@ function vere() {
         com = vet.length
         vet.push(Number(num.value))
         res.innerHTML += `<p>num ${vet[com]}</p>`
+        console.log(com)
 
     } else {
         alert('nao')

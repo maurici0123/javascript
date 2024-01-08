@@ -15,10 +15,11 @@ const myObj = {
   }
 
 for (i in myObj.cars) {
-    console.log(`
-${myObj.cars[i].name}
-    `)
+    console.log(`nome: ${myObj.cars[i].name}`)
+
     for (j in myObj.cars[i].models) {
-        console.log(myObj.cars[i].models[j])
+        console.log(`modelo: ${myObj.cars[i].models[j]}`)
     }
 }
+
+console.table(myObj)
