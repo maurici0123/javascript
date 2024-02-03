@@ -1,0 +1,14 @@
+.List{
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+.List li{
+    margin: 10px 20px;
+}
+.List li svg{
+    font-size: 30px;
+    cursor: pointer;
+}
