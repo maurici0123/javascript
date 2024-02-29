@@ -1,0 +1,78 @@
+#root{
+  background-image: url(image/map.jpg);
+  background-position: center center;
+  background-size: cover;
+  display: flex;  
+  align-items: center;
+  justify-content: center;
+}
+
+.container{
+  background: #eee;
+  border-radius: 1em;
+  padding: 3em;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+}
+
+input{
+  border-bottom: 2px solid #000;
+  background-color: #eee;
+  padding: .3em;
+  margin-right: 4em;
+  font-size: 1.2em;
+  letter-spacing: 1px;
+  transition: .4s;  
+}
+input:hover{
+  box-shadow: 0 30px 20px -15px #00000090;
+  scale: 1.1;
+}
+
+button{
+  background-color: #e64919;
+  color: #eee;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: .4s;
+}
+button:hover{
+  background-color: #ff3c00;
+  box-shadow: 0 20px 25px -10px #FF521B;
+  scale: 1.1;
+}
+
+.datas{
+  text-align: left;
+  display: block;
+  margin-top: 3em;
+  font-size: 1.2em;
+}
+
+.datas h4{
+  display: inline-block;
+  color: #FF521B;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.datas p{
+  margin: 1em;
+}
+
+.uf{
+  margin-left: .4em;
+  border-left: 1px solid #e64919;
+  padding-left: .4em;
+}
+
+@media screen  and (max-width: 515px) {
+  .container{
+    padding: 3em 1em;
+  }
+  input{
+    width: 120px;
+    margin-right: 2em;
+  }
+}
