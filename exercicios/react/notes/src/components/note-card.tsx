@@ -1,8 +1,10 @@
+// estudar
 import * as Dialog from "@radix-ui/react-dialog"
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { X } from 'lucide-react'
 
+// estudar
 interface NoteCardProps{
   note: {
     id: string,
@@ -36,6 +38,7 @@ export function NoteCard({ note, onNoteDeleted }: NoteCardProps){
 
             <div className="flex flex-1 flex-col gap-3 p-5">
               <span className="text-sm font-medium text-slate-200">
+                {/* estudar */}
                 {formatDistanceToNow(note.date, { locale: ptBR, addSuffix: true })}
               </span>
               <p className="text-sm font-medium leading-6 text-slate-400">

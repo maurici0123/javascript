@@ -38,6 +38,7 @@ export function App() {
   }
 
   function onNoteDeleted(id: string){
+    // estudar
     const notesArray =  notes.filter(note => {
       return note.id !== id
     })

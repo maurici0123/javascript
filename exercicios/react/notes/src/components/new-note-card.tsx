@@ -7,6 +7,7 @@ interface NewNoteCardProps{
   onNoteCreated: (content: string) => void
 }
 
+// estudar
 let speechRecognition: SpeechRecognition | null = null
 
 export function NewNoteCard({ onNoteCreated }: NewNoteCardProps){
