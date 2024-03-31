@@ -1,15 +1,38 @@
-class car {
-    constructor(name, year) {
-        this.name = name
-        this.year = year
+class pessoa {
+    constructor(nomeDaPessoa, idadeDaPessoa, alturaDAPessoa){
+        this.nome = nomeDaPessoa
+        this.idade = idadeDaPessoa
+        this.altura = alturaDAPessoa
     }
-    age(x) {
-        return x - this.year
+
+    apresentacao(){
+        console.log(`Olá! Meu nome é ${this.nome} e tenho ${this.idade} anos`)
     }
 }
-let date = new Date()
-let year = date.getFullYear()
 
-my_car = new car("ford", 2016)
+gustavo = new pessoa('Gustavo', 23 ,1.80)
+amanda = new pessoa ('Amanda' , 35 , 1.70)
+rodrigo = new  pessoa('Rodrigo' , 45 , 1.85)
 
-console.log(my_car.age(year))
+console.log(gustavo)
+gustavo.apresentacao()
+
+console.log()
+
+
+class filho extends pessoa{
+    constructor(nomeDoFilho, idadeDoFilho, alturaDoFilho,  nomeDoPai, nomeDaMae){
+        super(nomeDoFilho, idadeDoFilho,  alturaDoFilho) 
+        this.pai = nomeDoPai
+        this.mae = nomeDaMae        
+    }
+    
+    apresentacao(){
+       console.log(`Eu sou o ${this.nome}, filho do ${this.pai}`)
+    }
+}
+
+filipe = new filho('Filipe', 19,  1.75, 'rodrigo', 'Amanda')
+
+console.log(filipe)
+filipe.apresentacao()
