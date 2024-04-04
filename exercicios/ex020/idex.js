@@ -105,4 +105,79 @@ async function segundaFuncao() {
 
     console.log('terminou')
 }
-segundaFuncao()
+//segundaFuncao()
+
+// try e catch =  para tratar erros
+
+const main = () => {
+    try {
+        variavel
+        console.log("o código funcionou!")
+    } catch (err) {
+        console.error(`o erro do código foi: ${err}`)
+    } finally {
+        console.log('FIM da função')
+    }
+}
+//main()
+
+//////////////////////////////////////////////////////////
+
+const funcao1 = () => {
+    console.log('sou a função 1')
+
+    try {
+        'opa' ,cod
+    } catch(err) {
+        console.error(`erro: ${err}`)
+        throw err
+    }
+}
+
+const funcao2 = () => {
+    console.log('sou a função 2')
+
+    valor = true
+    try {
+        if (valor) {
+            throw new Error('ERRO na função 2')
+        }
+    } catch (err) {
+        console.error(`erro: ${err}`)
+        throw err
+    }
+}
+
+const main2 = () => {
+    try {
+        funcao1()
+        funcao2()
+        console.log('fim do código!')
+    } catch (err) {
+        console.error(`erro: ${err}`)
+    }
+}
+//main2()
+
+//////////////////////////////////////////////////////////
+
+const main3 = () => {
+
+    try {
+        try {
+            try {
+                throw new Error('erro no try 3')
+            } catch (err) {
+                console.log(`erro t3: ${err}`)
+                throw err
+            }
+        } catch (err) {
+            console.log(`erro t2: ${err}`)
+            throw err
+        }
+    } catch (err) {
+        console.log(`erro t1: ${err}`)
+    }
+}
+
+main3()
