@@ -1,4 +1,5 @@
 // IIFE = função auto executavel
+console.log('\n-------------- IIFE --------------\n')
 
 const result = (function () {
     const nome = 'fernanda'
@@ -8,7 +9,7 @@ const result = (function () {
 console.log(result)
 
 //callBack = Funcao que recebe outra funcao como parametro
-console.log()
+console.log('\n-------------- Callback --------------\n')
 
 const somar = (x, y) => x + y
 
@@ -17,7 +18,7 @@ const calcular = (x, y, calculo) => calculo(x, y)
 console.log(calcular(2, 3, somar))
 
 // prototype = herança de um objeto
-console.log()
+console.log('\n-------------- Prototype --------------\n')
 
 const animal = {
     tipo: 'animal',
@@ -46,7 +47,7 @@ Object.setPrototypeOf(gatoRaivoso, gato)
 gatoRaivoso.miarForte()
 
 // promise = representa a eventual conclusão (ou falha) de uma operação assíncrona e seu valor resultante
-console.log()
+// console.log('\n---------------- Promise ----------------\n')
 
 // const umaPromise = new Promise((resolve, reject) => {
 //     let soma = 1 + 2
@@ -91,6 +92,7 @@ console.log()
 // })
 
 // await e async = faz com que a função espere a requisição
+// console.log('\n-------------- await e async --------------\n')
 
 function primeiraFuncao() {
     return new Promise(resolve =>{
@@ -108,6 +110,7 @@ async function segundaFuncao() {
 //segundaFuncao()
 
 // try e catch =  para tratar erros
+console.log('\n-------------- try e catch --------------\n');
 
 const main = () => {
     try {
@@ -119,7 +122,7 @@ const main = () => {
         console.log('FIM da função')
     }
 }
-//main()
+main()
 
 //////////////////////////////////////////////////////////
 
@@ -157,7 +160,7 @@ const main2 = () => {
         console.error(`erro: ${err}`)
     }
 }
-//main2()
+main2()
 
 //////////////////////////////////////////////////////////
 
@@ -181,3 +184,43 @@ const main3 = () => {
 }
 
 main3()
+
+// arguments =  é um objeto semelhante a um array acessível dentro de funções
+console.log('\n-------------- arguments --------------\n')
+
+function argumentsFunction() {
+    console.log(arguments)
+
+    let args = Array.from(arguments)
+    console.log(args.reduce( (total, current) => total + current ))
+}
+
+argumentsFunction(2, 6, 9, 2, 1)
+
+// rest parameter = permite que uma função aceite um número indefinido de argumentos como um array
+console.log('\n-------------- rest parameter --------------\n')
+
+function parameterFunction(mult, ...parm) {
+
+    console.log(parm.map(element => mult * element))
+}
+
+parameterFunction(3, 6, 9, 2, 1)
+
+// spread operator = nos permite copiar rapidamente todo ou parte de um array ou objeto existente para outro array ou objeto
+console.log('\n-------------- spread operator --------------\n')
+
+const obj1 = {a: 1, b: 2}
+const obj2 = {c: 3, d: 4}
+
+const objCopy = {...obj1, ...obj2}
+console.log(objCopy)
+
+//////////////////////////////////////////////////////////
+
+const somaDeTres = (n1, n2, n3, n4) => {
+    console.log(n1+n2+n3)
+}
+
+list=[4, 7, 2]
+somaDeTres(...list)
