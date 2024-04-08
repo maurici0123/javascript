@@ -8,11 +8,13 @@ console.log(array.indexOf(2))  // caso não encontre ele mostrará -1 => -1
 array.pop()  // remove o ultimo valor => [1, 3, 5, 6, 6, 7]
 array.shift()  // remove o primeiro valor => [3, 5, 6, 6, 7]
 array.unshift(3, 7)  // adiciona um ou mais elementos no começo do array => [3, 7, 3, 5, 6, 6, 7]
-concatArray = array.concat([6, 8])  // junta dois ou mais arrays => [3, 7, 3, 5, 6, 6, 7, 6, 8]
-stringArray = array.join(' ')  // junta todos so elementos de um array em forma de string separando pelo parâmetro => 3 7 3 5 6 6 7
-sliceArray = array.slice(1, 5)  // retorna uma cópia começando a partir do primeiro parâmetro e termina no segundo parâmetro => [7, 3, 5, 6]
+console.log(array.concat([6, 8]))  // junta dois ou mais arrays => [3, 7, 3, 5, 6, 6, 7, 6, 8]
+console.log(array.join(' '))  // junta todos so elementos de um array em forma de string separando pelo parâmetro => 3 7 3 5 6 6 7
+console.log(array.slice(1, 5))  // retorna uma cópia começando a partir do primeiro parâmetro e termina no segundo parâmetro => [7, 3, 5, 6]
 console.log(array.includes(5))  // Verificar se o elemento existe no array => true
 console.log(array.reverse())  // inverte o array => [7, 6, 6, 5, 3, 7, 3]
+str = 'não adentre a boa noite apenas com ternura'
+console.log(str.split(' '))  // separa a string por caractere, palavra ou coloca tudo em um index  => ['não', 'adentre', 'a', 'boa', 'noite', 'apenas', 'com', 'ternura']
 
 
 // forEach = O .forEach() irá jogar cada um dos elemetos do Array no primeiro parâmetro, o índice do elemento no segundo e o Array original no terceiro
