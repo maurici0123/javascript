@@ -296,3 +296,21 @@ let key = 'z'
 let { [key]: aux } = { z: "bar" }
 
 console.log(aux)
+
+// parâmetro predefinido = são valores que você pode atribuir a um parâmetro de uma função no momento da sua criação
+console.log('\n-------------- parâmetro predefinido --------------\n')
+
+multiplicar = (v1 = 2, v2 = 3) => {
+    return v1 * v2
+}
+console.log(multiplicar())
+console.log(multiplicar(undefined, 6))
+console.log(multiplicar(null, 3))
+
+//////////////////////////////////////////////////////////
+
+somaArrayObject = ([n1, n2] = [2, 3], { n3: n3 } = { n3: 4 }) => {
+    return n1 + n2 + n3
+}
+console.log(somaArrayObject())
+console.log(somaArrayObject([6, 4], { n3: 5 }))
