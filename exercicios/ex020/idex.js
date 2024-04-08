@@ -23,7 +23,7 @@ console.log('\n-------------- Prototype --------------\n')
 const animal = {
     tipo: 'animal',
     som: 'som de um animal',
-    emitirSom: function(){
+    emitirSom: function () {
         console.log(this.som)
     }
 }
@@ -38,7 +38,7 @@ gato.emitirSom()
 
 const gatoRaivoso = {
     tipo: 'gato',
-    miarForte: function() {
+    miarForte: function () {
         console.log(this.som.toUpperCase())
     }
 }
@@ -95,7 +95,7 @@ gatoRaivoso.miarForte()
 // console.log('\n-------------- await e async --------------\n')
 
 function primeiraFuncao() {
-    return new Promise(resolve =>{
+    return new Promise(resolve => {
         setTimeout(() => resolve(console.log('esperou isso aqui')), 1000)
     })
 }
@@ -110,7 +110,7 @@ async function segundaFuncao() {
 //segundaFuncao()
 
 // try e catch =  para tratar erros
-console.log('\n-------------- try e catch --------------\n');
+console.log('\n-------------- try e catch --------------\n')
 
 const main = () => {
     try {
@@ -130,8 +130,8 @@ const funcao1 = () => {
     console.log('sou a função 1')
 
     try {
-        'opa' ,cod
-    } catch(err) {
+        'opa', cod
+    } catch (err) {
         console.error(`erro: ${err}`)
         throw err
     }
@@ -192,7 +192,7 @@ function argumentsFunction() {
     console.log(arguments)
 
     let args = Array.from(arguments)
-    console.log(args.reduce( (total, current) => total + current ))
+    console.log(args.reduce((total, current) => total + current))
 }
 
 argumentsFunction(2, 6, 9, 2, 1)
@@ -210,17 +210,89 @@ parameterFunction(3, 6, 9, 2, 1)
 // spread operator = nos permite copiar rapidamente todo ou parte de um array ou objeto existente para outro array ou objeto
 console.log('\n-------------- spread operator --------------\n')
 
-const obj1 = {a: 1, b: 2}
-const obj2 = {c: 3, d: 4}
+const obj1 = { a: 1, b: 2 }
+const obj2 = { c: 3, d: 4 }
 
-const objCopy = {...obj1, ...obj2}
+const objCopy = { ...obj1, ...obj2 }
 console.log(objCopy)
 
 //////////////////////////////////////////////////////////
 
 const somaDeTres = (n1, n2, n3, n4) => {
-    console.log(n1+n2+n3)
+    console.log(n1 + n2 + n3)
 }
 
-list=[4, 7, 2]
+list = [4, 7, 2]
 somaDeTres(...list)
+
+// Destructuring = extrair valores de arrays ou objetos em variáveis
+console.log('\n-------------- destructuring --------------\n')
+
+let arr = ['Ana', 'Bia', 'Carla']
+let [primeiroAluno, segundoAluno, terceiroAluno] = arr
+console.log(`O primeiro aluno é ${primeiroAluno}, o segundo é ${segundoAluno} e o terceiro é ${terceiroAluno}`)
+
+//////////////////////////////////////////////////////////
+
+const [a, ...b] = [1, 2, 3]
+console.log(a, b)
+
+//////////////////////////////////////////////////////////
+
+const o1 = { n: 'mau', i: 23 }
+const { n, i } = o1
+console.log(n, i)
+
+//////////////////////////////////////////////////////////
+
+const o2 = { p: 24, q: true }
+const o3 = { p: foo, q: baar } = o2
+console.log(o3)
+
+//////////////////////////////////////////////////////////
+
+const { l1 = 3, l2 = 8 } = { l1: 1 }
+console.log(l1, l2)
+
+//////////////////////////////////////////////////////////
+
+const student = {
+    name: 'John',
+    age: 20,
+    marks: {
+        science: 70,
+        math: 75
+    }
+}
+
+const { name: person, marks: { science: grade } } = student
+console.log(person, grade)
+
+//////////////////////////////////////////////////////////
+
+function userIdDisplayName({ id, displayName }) {
+    console.log(`id: ${id}, displayName: ${displayName}`)
+}
+
+function whois({ displayName: displayName, fullName: { firstName: name } }) {
+    console.log(displayName + " is " + name)
+}
+
+var user = {
+    id: 42,
+    displayName: "jdoe",
+    fullName: {
+        firstName: "John",
+        lastName: "Doe",
+    },
+}
+
+userIdDisplayName(user)
+whois(user)
+
+//////////////////////////////////////////////////////////
+
+let key = 'z'
+let { [key]: aux } = { z: "bar" }
+
+console.log(aux)
