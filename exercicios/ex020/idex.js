@@ -47,7 +47,7 @@ Object.setPrototypeOf(gatoRaivoso, gato)
 gatoRaivoso.miarForte()
 
 // promise = representa a eventual conclusão (ou falha) de uma operação assíncrona e seu valor resultante
-// console.log('\n---------------- Promise ----------------\n')
+console.log('\n---------------- Promise ----------------\n')
 
 // const umaPromise = new Promise((resolve, reject) => {
 //     let soma = 1 + 2
@@ -92,7 +92,7 @@ gatoRaivoso.miarForte()
 // })
 
 // await e async = faz com que a função espere a requisição
-// console.log('\n-------------- await e async --------------\n')
+console.log('\n-------------- await e async --------------\n')
 
 function primeiraFuncao() {
     return new Promise(resolve => {
@@ -314,3 +314,18 @@ somaArrayObject = ([n1, n2] = [2, 3], { n3: n3 } = { n3: 4 }) => {
 }
 console.log(somaArrayObject())
 console.log(somaArrayObject([6, 4], { n3: 5 }))
+
+// recursão =  função que chama a si mesma durante o processamento
+console.log('\n-------------- recursão --------------\n')
+
+function fatorial(n) {
+    if (n === 0) {
+      return 1
+    } 
+    return n * fatorial(n - 1)
+}
+
+console.log(fatorial(5))
+
+//////////////////////////////////////////////////////////
+
