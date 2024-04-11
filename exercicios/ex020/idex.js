@@ -320,12 +320,60 @@ console.log('\n-------------- recursão --------------\n')
 
 function fatorial(n) {
     if (n === 0) {
-      return 1
-    } 
+        return 1
+    }
     return n * fatorial(n - 1)
 }
 
 console.log(fatorial(5))
 
+// Closures = é uma função que tem acesso ao seu próprio escopo, bem como ao escopo de sua função pai, mesmo depois que a função pai tenha retornado
+console.log('\n-------------- Closures --------------\n')
+
+function criarContador() {
+    let c = 0
+    return () => {
+        console.log(c++)
+    }
+}
+
+contador = criarContador()
+contador()
+contador()
+contador()
+
 //////////////////////////////////////////////////////////
 
+function adição(XX) {
+    return (YY) => {
+        if (!YY) {
+            return XX
+        }
+        return adição(XX + YY)
+    }
+}
+console.log(adição(2)(5)(9)())
+
+// Currying = currying é o processo de transformar uma função que espera vários argumentos em uma função que espera um único argumento e retorna outra função
+console.log('\n-------------- Currying --------------\n')
+
+function ehMaiorCurrying(a) {
+    let comparação = false
+
+    return function ehMaiorCurrying2(b) {
+        if (!b) {
+            console.log(comparação)
+            return
+        }
+        comparação = a > b
+        console.log(comparação)
+
+        return ehMaiorCurrying2
+    }
+}
+
+resultado = ehMaiorCurrying(8)
+resultado(4)
+resultado(8)
+resultado(9)
+resultado()
