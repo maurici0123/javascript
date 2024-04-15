@@ -28,6 +28,8 @@ const animal = {
     }
 }
 
+animal.emitirSom()
+
 const gato = {
     som: 'miau',
     tipo: 'gato'
@@ -377,3 +379,65 @@ resultado(4)
 resultado(8)
 resultado(9)
 resultado()
+
+// objetos imutáveis =  dados que não podem ser alterados após sua criação, como strings ou números (mas pode mudar um objeto dentro desse objeto imutável)
+console.log('\n-------------- objetos imutáveis --------------\n')
+
+// Object.preventExtensions() = previne novas propriedades de serem adicionadas ao Objeto
+const object1 = {
+    koo: 234
+}
+Object.preventExtensions(object1)
+
+object1.koo = 90 // true
+delete object1.koo // true
+object1.haa = 665 // false
+
+console.log(object1)
+
+
+// Object.seal() = previne novas propriedades de serem adicionadas e a dletação delas
+const object2 = {
+    koo: 234
+}
+Object.seal(object2)
+
+object2.koo = 90 // true
+delete object2.koo // false
+object2.haa = 665 // false
+
+console.log(object2)
+
+
+// Object.freeze() = previne novas propriedades de serem adicionadas, a dletação e a alteração delas
+const object3 = {
+    koo: 234,
+}
+Object.freeze(object3)
+
+object3.koo = 90 // false
+delete object3.koo // false
+object3.haa = 665 // false
+
+console.log(object3)
+
+// checagem de objetos imutáveis = checar se um objeto é imutável
+console.log('\n-------------- checagem de objetos imutáveis --------------\n')
+
+const hybridObject = {
+    someProp: 'string'
+}
+
+console.log(Object.isExtensible(hybridObject))
+console.log(Object.isSealed(hybridObject))
+console.log(Object.isFrozen(hybridObject))
+
+Object.preventExtensions(hybridObject)
+Object.seal(hybridObject)
+Object.freeze(hybridObject)
+console.log()
+
+console.log(Object.isExtensible(hybridObject))
+console.log(Object.isSealed(hybridObject))
+console.log(Object.isFrozen(hybridObject))
+

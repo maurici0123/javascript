@@ -13,6 +13,7 @@ console.log(array.join(' '))  // junta todos so elementos de um array em forma d
 console.log(array.slice(1, 5))  // retorna uma cópia começando a partir do primeiro parâmetro e termina no segundo parâmetro => [7, 3, 5, 6]
 console.log(array.includes(5))  // Verificar se o elemento existe no array => true
 console.log(array.reverse())  // inverte o array => [7, 6, 6, 5, 3, 7, 3]
+console.log(array.splice(6, 1))  // remove um elemento do array, o primeiro é a posição no array e o segundo é a quantidade de elementos a remover => [7, 6, 5, 3, 7, 3]
 str = 'não adentre a boa noite apenas com ternura'
 console.log(str.split(' '))  // separa a string por caractere, palavra ou coloca tudo em um index  => ['não', 'adentre', 'a', 'boa', 'noite', 'apenas', 'com', 'ternura']
 
