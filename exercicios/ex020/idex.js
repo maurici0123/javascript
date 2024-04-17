@@ -329,8 +329,8 @@ function fatorial(n) {
 
 console.log(fatorial(5))
 
-// Closures = é uma função que tem acesso ao seu próprio escopo, bem como ao escopo de sua função pai, mesmo depois que a função pai tenha retornado
-console.log('\n-------------- Closures --------------\n')
+// closures = é uma função que tem acesso ao seu próprio escopo, bem como ao escopo de sua função pai, mesmo depois que a função pai tenha retornado
+console.log('\n-------------- closures --------------\n')
 
 function criarContador() {
     let c = 0
@@ -441,3 +441,109 @@ console.log(Object.isExtensible(hybridObject))
 console.log(Object.isSealed(hybridObject))
 console.log(Object.isFrozen(hybridObject))
 
+// getters e setters = getters são usados ​​para ler valores de propriedades, enquanto setters são usados ​​para escrever valores em propriedades
+console.log('\n-------------- getters e setters --------------\n')
+
+const getSetObj = {
+    lista: ['casa', 'celular', 'avião'],
+
+    get primeiraString() {
+        return this.lista.length ? this.lista[0] : null
+    },
+
+    set primeiraString(item) {
+        this.lista.unshift(item)
+    }
+}
+
+console.log()
+console.log(getSetObj.primeiraString)
+getSetObj.primeiraString = 'mochila'
+console.log(getSetObj.primeiraString)
+
+//////////////////////////////////////////////////////////
+
+const getSetObj2 = { a: 0 }
+
+Object.defineProperty(getSetObj2, 'prop', {
+    get() {
+        return this.a
+    },
+
+    set(item) {
+        this.a = item
+    }
+})
+
+console.log()
+console.log(getSetObj2.prop)
+getSetObj2.prop = 8
+console.log(getSetObj2.prop)
+
+//////////////////////////////////////////////////////////
+
+const str = 'nomeCompleto'
+class usuario {
+
+    #primeiroNome = 'francisco'
+    #segundoNome = 'machado'
+
+    get [str]() {
+        return `${this.#primeiroNome} ${this.#segundoNome}`
+    }
+
+    set [str](value) {
+        [this.#primeiroNome, this.#segundoNome] = value.split(' ')
+    }
+}
+
+console.log()
+const pessoa = new usuario()
+console.log(pessoa.nomeCompleto)
+pessoa.nomeCompleto = 'marcos vieira da silva'
+console.log(pessoa.nomeCompleto)
+
+//////////////////////////////////////////////////////////
+
+class classeStringtest {
+    static #strInterna = 'uma string teste'
+
+    static get str() {
+        return this.#strInterna
+    }
+
+    static set str(value) {
+        this.#strInterna = value
+    }
+}
+
+console.log()
+console.log(classeStringtest.str)
+classeStringtest.str = 'outra string'
+console.log(classeStringtest.str)
+
+// memoization = ele armazena os resultados da computação no cache e recuperando as mesmas informações do cache na próxima vez que for necessário
+console.log('\n-------------- memoization --------------\n')
+
+const fib = (n) => {
+    if(n<=1) return 1
+    
+    return fib(n-1) + fib(n-2)
+}
+
+console.log(fib(20))
+
+//////////////////////////////////////////////////////////
+
+console.time('memoization')
+const memo = {}
+const fib2 = (n, memo) => {
+    if(memo[n]) return memo[n]
+    if(n<=1) return 1
+    
+    memo[n] = fib2(n-1, memo) + fib2(n-2, memo)
+    return memo[n]
+}
+
+console.log(fib2(6, memo))
+console.timeEnd('memoization')
