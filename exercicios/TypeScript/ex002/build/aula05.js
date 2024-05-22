@@ -1,0 +1,10 @@
+"use strict";
+let cursos = ['javascript', 'typescript', 'c++'];
+let valores = [3, 8, 1, 9];
+let numStri = ['ternura', 5];
+numStri = [77, 'hello'];
+cursos.push('python');
+valores.push(4);
+console.log(cursos);
+console.log(valores);
+console.log(numStri);
