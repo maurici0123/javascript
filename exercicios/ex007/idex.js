@@ -16,7 +16,7 @@ console.log(array.reverse())  // inverte o array => [7, 6, 6, 5, 3, 7, 3]
 console.log(array.splice(6, 1))  // remove um elemento do array, o primeiro é a posição no array e o segundo é a quantidade de elementos a remover => [7, 6, 6, 5, 3, 7]
 console.log(array.splice(2, 0, 1))  // adicionar um elemento no array, o elemento 1 naposição 2 => [7, 6, 1, 6, 5, 3, 7]
 str = 'não adentre a boa noite apenas com ternura'
-console.log(str.split(' '))  // separa a string por caractere, palavra ou coloca tudo em um index  => ['não', 'adentre', 'a', 'boa', 'noite', 'apenas', 'com', 'ternura']
+console.log(str.split(''))  // separa a string por caractere, palavra ou coloca tudo em um index  => ['não', 'adentre', 'a', 'boa', 'noite', 'apenas', 'com', 'ternura']
 
 
 // forEach = O .forEach() irá jogar cada um dos elemetos do Array no primeiro parâmetro, o índice do elemento no segundo e o Array original no terceiro

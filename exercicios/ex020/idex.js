@@ -1,3 +1,20 @@
+// Random and Round = números aleatórios e arredondamento de múmeros
+console.log('\n-------------- Random and Round --------------\n')
+
+random1 = Math.random() // até 1
+random2 = Math.random()*100 // até 100
+random3 = Math.random()*(50 - 20) + 2 // de 20 à 50
+console.log(random1)
+console.log(random2)
+console.log(random3)
+
+random4 = crypto.randomUUID()
+console.log(random4)
+
+console.log(Math.floor(random2)) // arredonda para baixo
+console.log(Math.ceil(random2)) // arredonda para cima
+console.log(Math.round(random2)) // arredonda para o mais próximo
+
 // IIFE = função auto executavel
 console.log('\n-------------- IIFE --------------\n')
 
@@ -531,7 +548,7 @@ const fib = (n) => {
     return fib(n-1) + fib(n-2)
 }
 
-console.log(fib(20))
+console.log(fib(3))
 
 //////////////////////////////////////////////////////////
 
@@ -545,5 +562,5 @@ const fib2 = (n, memo) => {
     return memo[n]
 }
 
-console.log(fib2(6, memo))
+console.log(fib2(50, memo))
 console.timeEnd('memoization')
