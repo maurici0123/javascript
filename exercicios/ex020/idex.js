@@ -473,7 +473,6 @@ const getSetObj = {
     }
 }
 
-console.log()
 console.log(getSetObj.primeiraString)
 getSetObj.primeiraString = 'mochila'
 console.log(getSetObj.primeiraString)
@@ -517,7 +516,7 @@ class usuario {
 console.log()
 const pessoa = new usuario()
 console.log(pessoa.nomeCompleto)
-pessoa.nomeCompleto = 'marcos vieira da silva'
+pessoa.nomeCompleto = 'marcos vieira'
 console.log(pessoa.nomeCompleto)
 
 //////////////////////////////////////////////////////////
