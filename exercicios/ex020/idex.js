@@ -3,7 +3,7 @@ console.log('\n-------------- Random and Round --------------\n')
 
 random1 = Math.random() // até 1
 random2 = Math.random()*100 // até 100
-random3 = Math.random()*(50 - 20) + 2 // de 20 à 50
+random3 = Math.random()*(50 - 20) + 20 // de 20 à 50
 console.log(random1)
 console.log(random2)
 console.log(random3)

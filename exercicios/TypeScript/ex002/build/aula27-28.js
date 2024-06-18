@@ -7,6 +7,7 @@ curso1 = {
     des: 'curso de typescript',
     aula: 36,
     maxAlunos: 45,
+    pre_requisito: 'saber JavaScript'
 };
 curso2 = {
     titulo: 'pthon',

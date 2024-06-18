@@ -8,7 +8,7 @@ interface curso {
 }
 
 interface cursoPro extends curso {
-
+    pre_requisito: string
 }
 
 let curso1: cursoPro
@@ -19,6 +19,7 @@ curso1 = {
     des: 'curso de typescript',
     aula: 36,
     maxAlunos: 45,
+    pre_requisito: 'saber JavaScript'
 }
 curso2 = {
     titulo: 'pthon',
