@@ -3,7 +3,7 @@ console.clear()
 abstract class Conta {
     protected readonly numero: number
     protected titular: string   
-    saldo: number
+    protected saldo: number
 
     constructor(titular: string, saldo: number) {
         this.numero = this.gerernumero()

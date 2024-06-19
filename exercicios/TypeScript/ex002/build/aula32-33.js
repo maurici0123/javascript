@@ -5,7 +5,7 @@ var veiculos;
     class carro {
         constructor(nome) {
             this.nome = nome;
-            this.motor = new motores.motor(250);
+            this.motor = new motores.motor(250, 6, new motores.turbo(50));
         }
     }
     veiculos.carro = carro;
@@ -16,13 +16,24 @@ var motores;
         constructor(potencia) {
             this.potencia = potencia;
         }
+        get pot() {
+            return this.potencia;
+        }
     }
+    motores.turbo = turbo;
     class motor {
-        constructor(potencia) {
-            this.potencia = potencia;
+        set off_on(v) {
+            this.ligado = v;
+        }
+        constructor(potencia, cilindros, turbo) {
+            this.potencia = potencia + (turbo ? turbo.pot : 0);
+            this.ligado = false;
+            this.cilindros = cilindros;
         }
     }
     motores.motor = motor;
 })(motores || (motores = {}));
 const carro1 = new veiculos.carro('Cooper');
+console.log(carro1);
+carro1.motor.off_on = true;
 console.log(carro1);
