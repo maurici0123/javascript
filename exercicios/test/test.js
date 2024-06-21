@@ -1,4 +1,4 @@
-x = 'ovo'
+x = 'arara'
 y = x.split('')
 x=x.split('').reverse()
 r = x.every((e,i) => e == y[i])
