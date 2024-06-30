@@ -1,10 +1,15 @@
 x = 'arara'
 y = x.split('')
-x=x.split('').reverse()
-r = x.every((e,i) => e == y[i])
-console.log(r)
+x = x.split('').reverse()
+r = x.every((e, i) => e == y[i])
+//console.log(r)
 
-const a=60
-const d=0.1
+const input = ['(', '2', ')', 'Math.cos(', '2', '3', ')']
 
-console.log(a-(a*d))
+for (let i = 0; i < input.length; i++) {
+    if (input[i] == ')' && input[i + 1].match(/Math\.\w+/)) {
+        input.splice(i + 1, 0, '*')
+    }
+}
+
+console.log(input)

@@ -7,10 +7,37 @@ import Card from "@/components/Card"
 function calcDis(v: number, d: number) {
   return v - (v * d)
 }
-
 function calcInc(v: number, d: number) {
   return v + (v * d)
 }
+
+const products = [
+  {
+    product: 'teclado',
+    price: 89.90,
+    stock: true
+  },
+  {
+    product: 'mouse',
+    price: 40,
+    disc_inc: 0.1,
+    funcao: calcInc,
+    stock: true
+  },
+  {
+    product: 'monitor',
+    price: 210.99,
+    disc_inc: 0.3,
+    funcao: calcDis,
+    stock: false
+  },
+  {
+    product: 'mousepad',
+    price: 34.99,
+    stock: true
+  },
+]
+
 
 export default function Home() {
   return (
@@ -20,9 +47,13 @@ export default function Home() {
         <h1 style={{ fontStyle: "italic", margin: 'auto', textAlign: 'center', fontSize: '32px', paddingTop: '50px' }}>Loja</h1>
 
         <div className="flex justify-center gap-4 mt-5">
-          <Card product='teclado' price={89.90} />
-          <Card product='mouse' price={40} disc_inc={0.3} funcao={calcDis} />
-          <Card product='monitor' price={320.00} disc_inc={0.1} funcao={calcInc} />
+          {
+            products.map(e => {
+              return (
+                <Card product={e.product} price={e.price} stock={e.stock} disc_inc={e.disc_inc} funcao={e.funcao} />
+              )
+            })
+          }
         </div>
       </main>
     </main >
