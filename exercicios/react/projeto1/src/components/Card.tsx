@@ -4,11 +4,12 @@ interface cardPrps {
     stock: boolean
     disc_inc?: number
     funcao?: any
+    children: any
 }
 
 export default function Card(props: cardPrps) {
     return (
-        <div className={`text-lg font-semibold p-6 border ${props.stock ? 'border-sky-500' : 'border-red-500'} rounded-lg`}>
+        <div className={ `h-60 text-lg font-semibold p-6 border ${props.stock ? 'border-sky-500' : 'border-red-500'} rounded-lg`}>
             <p>Produto: {props.product}</p>
 
             {props.funcao ?
@@ -20,6 +21,8 @@ export default function Card(props: cardPrps) {
             }
 
             <p>Estoque: {props.stock ? 'Sim' : 'Não'}</p>
+            {props.children[0]}
+            {props.children[1]}
         </div>
     )
 }
