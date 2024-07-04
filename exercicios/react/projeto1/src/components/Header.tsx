@@ -9,6 +9,7 @@ export default function Header() {
         alt="logo"
         width={80}
         height={80}
+        priority
       />
 
       <Link style={link} href={'/'}>
@@ -27,6 +28,10 @@ export default function Header() {
 
       <Link style={link} href={'/useState/useState'}>
         UseState
+      </Link>
+
+      <Link style={link} href={'/inputs/inputs'}>
+        Inputs
       </Link>
     </header>
   )
