@@ -1,6 +1,8 @@
 import Header from "@/components/Header"
 import Card from "@/components/Card"
 import { useRouter } from "next/router"
+import { useEffect } from "react"
+import Globais from "@/components/Globais"
 
 function calcDis(v: number, d: number) {
     return v - (v * d)
@@ -41,6 +43,12 @@ const products = [
 ]
 
 export default function produtosPagina() {
+    useEffect(() => {
+        Globais.City = 'London'
+        Globais.Name = 'thais'
+        Globais.job = 'medica'
+    }, [])
+
     const router = useRouter()
     const { nome, curso } = router.query
     console.log(nome)
@@ -49,17 +57,22 @@ export default function produtosPagina() {
     return (
         <main className='bg-stone-200'>
             <Header />
-            <div className="container mx-auto bg-slate-100 px-5 h-screen flex justify-center gap-4 pt-5">
-                {
-                    products.map(e => {
-                        return (
-                            <Card key={e.id} product={e.product} price={e.price} stock={e.stock} disc_inc={e.disc_inc} funcao={e.funcao}>
-                                <p className="text-green-600">10X sem juros</p>
-                                <p className="text-green-600">ou 15X com nosso cartão</p>
-                            </Card>
-                        )
-                    })
-                }
+            <div className="container mx-auto bg-slate-100 h-screen flex flex-col items-center">
+                <div className=" px-5 flex justify-center gap-4 py-5">
+                    {
+                        products.map(e => {
+                            return (
+                                <Card key={e.id} product={e.product} price={e.price} stock={e.stock} disc_inc={e.disc_inc} funcao={e.funcao}>
+                                    <p className="text-green-600">10X sem juros</p>
+                                    <p className="text-green-600">ou 15X com nosso cartão</p>
+                                </Card>
+                            )
+                        })
+                    }
+                </div>
+                <p>{Globais.Name}</p>
+                <p>{Globais.City}</p>
+                <p>{Globais.job}</p>
             </div>
         </main>
     )

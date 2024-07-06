@@ -8,7 +8,7 @@ export default function UseState() {
     return (
         <main className='bg-stone-200'>
             <Header />
-            <div className="container mx-auto bg-slate-100 px-5 h-screen text-center text-2xl flex flex-col gap-5 pt-5">
+            <div className="container mx-auto bg-slate-100 h-screen text-center text-2xl flex flex-col gap-5 pt-5">
                 <h1>UseState</h1>
                 <DisplyState valor={cont} setValor={setCont}/>
             </div>

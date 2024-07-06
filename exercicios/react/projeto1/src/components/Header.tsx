@@ -30,8 +30,16 @@ export default function Header() {
         UseState
       </Link>
 
+      <Link style={link} href={'/useEffect/useEffect'}>
+        UseEffect
+      </Link>
+
       <Link style={link} href={'/inputs/inputs'}>
         Inputs
+      </Link>
+
+      <Link style={link} href={'/filtragem/filtragem'}>
+        Filtragem
       </Link>
     </header>
   )
