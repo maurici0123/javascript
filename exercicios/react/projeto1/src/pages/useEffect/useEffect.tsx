@@ -6,7 +6,7 @@ export default function useeffect() {
     const [aux, setAux] = useState<number>(0)
     
     useEffect(() => {
-        alert('aux foi alteradi!')
+        alert('aux foi alterado!')
     })
 
     function adicionarAux() {
