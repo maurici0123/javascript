@@ -1,29 +1,8 @@
 import Header from "@/components/Header"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 
-const carros = [
-    { id: 0, categ: 'Esporte', valor: '120000.00', modelo: 'Golf GTI' },
-    { id: 1, categ: 'Esporte', valor: '200000.00', modelo: 'Camaro' },
-    { id: 2, categ: 'SUV', valor: '100000.00', modelo: 'HRV' },
-    { id: 3, categ: 'SUV', valor: '100000.00', modelo: 'T-Cross' },
-    { id: 4, categ: 'Utilitario', valor: '180000.00', modelo: 'Hillux' },
-    { id: 5, categ: 'Utilitario', valor: '160000.00', modelo: 'Ranger' },
-    { id: 6, categ: 'Esporte', valor: '150000.00', modelo: 'Mustang' },
-    { id: 7, categ: 'Esporte', valor: '220000.00', modelo: 'Porsche 911' },
-    { id: 8, categ: 'SUV', valor: '120000.00', modelo: 'Renegade' },
-    { id: 9, categ: 'SUV', valor: '130000.00', modelo: 'Compass' },
-    { id: 10, categ: 'Utilitario', valor: '170000.00', modelo: 'Amarok' },
-    { id: 11, categ: 'Utilitario', valor: '140000.00', modelo: 'Frontier' },
-    { id: 12, categ: 'Esporte', valor: '180000.00', modelo: 'Audi TT' },
-    { id: 13, categ: 'Esporte', valor: '250000.00', modelo: 'Corvette' },
-    { id: 14, categ: 'SUV', valor: '110000.00', modelo: 'Creta' },
-    { id: 15, categ: 'SUV', valor: '105000.00', modelo: 'Kicks' },
-    { id: 16, categ: 'Utilitario', valor: '165000.00', modelo: 'S10' },
-    { id: 17, categ: 'Utilitario', valor: '175000.00', modelo: 'L200' },
-    { id: 18, categ: 'Esporte', valor: '230000.00', modelo: 'Ferrari 488' },
-    { id: 19, categ: 'Esporte', valor: '190000.00', modelo: 'BMW Z4' }
-]
+let carros = [{categ: ''}]
 
 function iserirCarro(c: any, l: any) {
     l.push(
@@ -35,13 +14,21 @@ function iserirCarro(c: any, l: any) {
     )
 }
 
-export default function filtragem() {
+export default function Filtragem() {
     const [linhas, setLinhas] = useState<any[]>([])
+
+    useEffect(()=>{
+        fetch('http://127.0.0.1:1880/carros')
+        .then(response => response.json())
+        .then(response =>{
+            carros = response
+        })
+    },[])
 
     function criarLinhas(categ: string) {
         let l: object[] = []
 
-        carros.forEach((c) => {
+        carros.forEach((c:any) => {
             if (c.categ == categ) {
                 iserirCarro(c, l)
             }

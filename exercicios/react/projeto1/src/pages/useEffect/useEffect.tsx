@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import { useState, useEffect } from "react";
 
-export default function useeffect() {
+export default function Useeffect() {
     const [cont, setCont] = useState<number>(0)
     const [aux, setAux] = useState<number>(0)
     

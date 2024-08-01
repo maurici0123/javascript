@@ -19,26 +19,26 @@ export default function Header() {
       <Link style={link}
         href={
           {
-            pathname: '/produtos/produtos',
+            pathname: '/produtos/Produtos',
             query: { nome: 'alisson', curso: 'python' }
           }
         }>
         Prdutos
       </Link>
 
-      <Link style={link} href={'/useState/useState'}>
+      <Link style={link} href={'/useState/UseState'}>
         UseState
       </Link>
 
-      <Link style={link} href={'/useEffect/useEffect'}>
+      <Link style={link} href={'/useEffect/UseEffect'}>
         UseEffect
       </Link>
 
-      <Link style={link} href={'/inputs/inputs'}>
+      <Link style={link} href={'/inputs/Inputs'}>
         Inputs
       </Link>
 
-      <Link style={link} href={'/filtragem/filtragem'}>
+      <Link style={link} href={'/filtragem/Filtragem'}>
         Filtragem
       </Link>
     </header>

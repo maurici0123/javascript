@@ -27,7 +27,7 @@ export default function Inputs() {
 
                 <p className="text-lg">Nome digitado:  {nome}</p>
                 <p className="text-lg">Curso escolhido:  {curso}</p>
-                
+
                 <p>{Globais.Name}</p>
                 <p>{Globais.City}</p>
                 <p>{Globais.job}</p>

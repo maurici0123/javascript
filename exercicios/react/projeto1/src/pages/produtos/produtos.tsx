@@ -42,7 +42,7 @@ const products = [
     },
 ]
 
-export default function produtosPagina() {
+export default function Produtos() {
     useEffect(() => {
         Globais.City = 'London'
         Globais.Name = 'thais'
