@@ -16,7 +16,7 @@ function App() {
 
         .then(r => {
           if (r.ok != true) {
-            alert('cpf não encontrado!')
+            alert('CEP não encontrado!')
             return
 
           } else {
