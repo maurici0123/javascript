@@ -3,6 +3,65 @@
 @tailwind utilities;
 
 .destaque{
-    background-color: brown;
+    background-color: #5c5c5c;
     color: #fff;
+}
+
+.campoForm{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+}
+
+.inputDados{
+    border: 1px solid black;
+    padding: 0.25rem;
+    width: 100%;
+    border-radius: 0.5rem;
+}
+
+.buttonDados{
+    background-color: rgb(49, 46, 129);
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.grid{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.gridLinhaTitulo{
+    background-color: rgb(49, 46, 129);
+    padding: 0.25rem;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.gridTitulo{
+    width: 20%;
+}
+
+.gridLinhaDados{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.gridLinhas{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.gridLinha{
+    width: 20%;
 }
