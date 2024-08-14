@@ -2,21 +2,26 @@ import GridDados from "@/components/GridDados"
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
 
-const array: any = []
-
 export default function DadosIMC() {
     const [nome, setNome] = useState<any>('')
     const [data, setData] = useState<any>('')
     const [dados, setDados] = useState<any[]>([])
 
-    const { p_peso='', p_altura='', p_IMC='' } = useRouter().query
+    const { p_peso = '', p_altura = '', p_IMC = '' } = useRouter().query
 
     useEffect(() => {
+        const storedData = localStorage.getItem('dados')
+        if (storedData) {
+            setDados(transformObject(storedData))
+        }
+        //localStorage.clear()
+
         const date = new Date()
-        const hora = date.getHours() + ':' + date.getMinutes()
+        //const hora = date.getHours() + ':' + date.getMinutes()
         const dia = date.toLocaleDateString()
 
-        setData(hora + '-' + dia)
+        //setData(hora + '-' + dia)
+        setData(dia)
     }, [])
 
     function transformObject(obj: any) {
@@ -24,7 +29,7 @@ export default function DadosIMC() {
     }
 
     function gravar() {
-        const id = String(Math.random())
+        const id = crypto.randomUUID()
         const res = {
             nome: nome,
             peso: p_peso,
@@ -33,12 +38,15 @@ export default function DadosIMC() {
             data: data,
             id: id
         }
-        localStorage.setItem(id, JSON.stringify(res))
 
-        array.push(id)
-        setDados([...array])
+        setDados(prevDados => {
+            const updatedDados = [res, ...prevDados]
+            localStorage.setItem('dados', JSON.stringify(updatedDados))
+            return updatedDados
+        })
         setNome('')
-        console.log(nome)
+
+        const t = localStorage.getItem('dados')
     }
 
     return (
@@ -49,11 +57,11 @@ export default function DadosIMC() {
                     <input className="inputDados" value={nome} onChange={evt => setNome(evt.target.value)} />
                 </div>
                 <div className="campoForm">
-                    <label>Peso</label>
+                    <label>Peso(Kg)</label>
                     <input className="inputDados" type="text" disabled value={p_peso} />
                 </div>
                 <div className="campoForm">
-                    <label>Altura</label>
+                    <label>Altura(m)</label>
                     <input className="inputDados" type="text" disabled value={p_altura} />
                 </div>
                 <div className="campoForm">
@@ -78,11 +86,9 @@ export default function DadosIMC() {
                 <div className="gridLinhaDados">
                     {
                         dados.map((e: any) => {
-                            const dadoString = localStorage.getItem(e)
-                            const dadoObjeto = transformObject(dadoString)
-
+                            console.log(dados)
                             return (
-                                < GridDados key={dadoObjeto.id} nome={dadoObjeto.nome} peso={dadoObjeto.peso} altura={dadoObjeto.altura} IMC={dadoObjeto.IMC} data={dadoObjeto.data} />
+                                < GridDados key={e.id} nome={e.nome} peso={e.peso} altura={e.altura} IMC={e.IMC} data={e.data} />
                             )
                         })
                     }

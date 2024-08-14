@@ -12,7 +12,7 @@ export default function CalcIMC() {
     const [IMC, setIMC] = useState<any>()
 
     function calcular() {
-        let res = peso/(altura**2)
+        let res = peso / (altura ** 2)
         setIMC(res.toFixed(2))
         console.log(IMC)
     }
@@ -23,6 +23,7 @@ export default function CalcIMC() {
             <CampForm label="peso" state={peso} funcState={setPeso} />
             <CampForm label="altura" state={altura} funcState={setAltura} />
             <button className="bg-indigo-900 text-white mx-2 p-1 rounded-lg cursor-pointer" onClick={calcular}>Calcular</button>
+
             <Link className="bg-indigo-900 text-white text-center mx-2 p-1 rounded-lg cursor-pointer" href={{
                 pathname: '/DadosIMC/DadosIMC',
                 query: {
@@ -30,9 +31,9 @@ export default function CalcIMC() {
                     p_altura: altura,
                     p_IMC: IMC
                 }
-            }}>Gravar</Link>
+            }}><MdOutlineSaveAs className="mx-auto text-xl" /></Link>
             <p className="bg-zinc-100 p-1">Resultado: {IMC}</p>
-            <TabelaIMC imc={IMC}/>
+            <TabelaIMC imc={IMC} />
         </div>
     )
 }
