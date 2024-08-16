@@ -3,7 +3,6 @@ import CampForm from "@/components/CampForm"
 import TabelaIMC from "@/components/TabelaIMC"
 import Link from "next/link"
 
-import { FaRegSave } from "react-icons/fa"
 import { MdOutlineSaveAs } from "react-icons/md"
 
 export default function CalcIMC() {

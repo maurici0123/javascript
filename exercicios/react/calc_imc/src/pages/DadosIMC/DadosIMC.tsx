@@ -1,11 +1,19 @@
 import GridDados from "@/components/GridDados"
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
+import { FaRegSave } from "react-icons/fa"
 
 export default function DadosIMC() {
     const [nome, setNome] = useState<any>('')
     const [data, setData] = useState<any>('')
     const [dados, setDados] = useState<any[]>([])
+
+    const get_deleted_data = (obj: any) => {
+        setDados(() => {
+            localStorage.setItem('dados', JSON.stringify(obj))
+            return obj
+        })
+    }
 
     const { p_peso = '', p_altura = '', p_IMC = '' } = useRouter().query
 
@@ -17,20 +25,16 @@ export default function DadosIMC() {
         //localStorage.clear()
 
         const date = new Date()
-        //const hora = date.getHours() + ':' + date.getMinutes()
-        const dia = date.toLocaleDateString()
-
-        //setData(hora + '-' + dia)
-        setData(dia)
+        setData(date.toLocaleDateString())
     }, [])
 
     function transformObject(obj: any) {
         return JSON.parse(obj)
     }
 
-    function gravar() {
+    function record() {
         const id = crypto.randomUUID()
-        const res = {
+        const obj = {
             nome: nome,
             peso: p_peso,
             altura: p_altura,
@@ -40,13 +44,11 @@ export default function DadosIMC() {
         }
 
         setDados(prevDados => {
-            const updatedDados = [res, ...prevDados]
+            const updatedDados = [obj, ...prevDados]
             localStorage.setItem('dados', JSON.stringify(updatedDados))
             return updatedDados
         })
         setNome('')
-
-        const t = localStorage.getItem('dados')
     }
 
     return (
@@ -72,7 +74,7 @@ export default function DadosIMC() {
                     <label>Data</label>
                     <input className="inputDados" disabled value={data} />
                 </div>
-                <button className="buttonDados" onClick={gravar}>Gravar</button>
+                <button className="buttonDados" onClick={record}><FaRegSave className="mx-auto text-xl"/></button>
             </div>
 
             <div className="grid">
@@ -86,9 +88,8 @@ export default function DadosIMC() {
                 <div className="gridLinhaDados">
                     {
                         dados.map((e: any) => {
-                            console.log(dados)
                             return (
-                                < GridDados key={e.id} nome={e.nome} peso={e.peso} altura={e.altura} IMC={e.IMC} data={e.data} />
+                                < GridDados key={e.id} id={e.id} nome={e.nome} peso={e.peso} altura={e.altura} IMC={e.IMC} data={e.data} enviarFuncao={get_deleted_data} />
                             )
                         })
                     }
