@@ -52,7 +52,7 @@ export default function DadosIMC() {
     }
 
     return (
-        <div className="flex flex-col justify-center m-auto w-6/12 mt-[15%]">
+        <div className="flex flex-col justify-center m-auto w-[400px] mt-[15%]">
             <div>
                 <div className="campoForm">
                     <label>Nome</label>

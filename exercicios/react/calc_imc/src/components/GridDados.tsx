@@ -23,7 +23,7 @@ export default function GridDados(props: GridDadosProps) {
 
             arrayDados.map((obj: any) => {
                 if (obj.id === id) {
-                    const arrayDelete = arrayDados.splice(arrayDados.indexOf(obj), 1)
+                    arrayDados.splice(arrayDados.indexOf(obj), 1)
                     props.enviarFuncao(arrayDados)
                 }
             })

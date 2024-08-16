@@ -17,10 +17,10 @@ export default function CalcIMC() {
     }
 
     return (
-        <div className="flex flex-col border border-black w-[300px] gap-5 rounded-md">
-            <p className="w-full text-center bg-zinc-400 font-bold text-lg">Cálculo do IMC</p>
-            <CampForm label="peso" state={peso} funcState={setPeso} />
-            <CampForm label="altura" state={altura} funcState={setAltura} />
+        <div className="flex flex-col border border-zinc-800 outline-4 shadow-lg w-[400px] gap-5 px-1 rounded-md bg-zinc-300">
+            <p className="w-full text-center font-bold text-lg">Cálculo do IMC</p>
+            <CampForm label="peso:" state={peso} funcState={setPeso} />
+            <CampForm label="altura:" state={altura} funcState={setAltura} />
             <button className="bg-indigo-900 text-white mx-2 p-1 rounded-lg cursor-pointer" onClick={calcular}>Calcular</button>
 
             <Link className="bg-indigo-900 text-white text-center mx-2 p-1 rounded-lg cursor-pointer" href={{
