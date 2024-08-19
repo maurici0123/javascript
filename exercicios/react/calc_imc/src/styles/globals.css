@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .destaque{
-    background-color: #5c5c5c;
+    background-color: #312e81;
     color: #fff;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .buttonDados{
-    background-color: rgb(49, 46, 129);
+    background-color: #312e81;
     width: 100%;
     height: 30px;
     text-align: center;
