@@ -52,47 +52,49 @@ export default function DadosIMC() {
     }
 
     return (
-        <div className="flex flex-col justify-center m-auto w-[400px] mt-[15%]">
-            <div>
-                <div className="campoForm">
-                    <label>Nome</label>
-                    <input className="inputDados" value={nome} onChange={evt => setNome(evt.target.value)} />
+        <div className="h-screen flex bg-zinc-100">
+            <div className="w-11/12 sm:w-10/12 md:w-8/12 lg:w-2/4 2xl:w-1/3 flex flex-col m-auto mt-[15%]">
+                <div>
+                    <div className="campoForm">
+                        <label className="font-semibold">Nome</label>
+                        <input className="inputDados shadow-md bg-transparent" value={nome} onChange={evt => setNome(evt.target.value)} />
+                    </div>
+                    <div className="campoForm">
+                        <label className="font-semibold">Peso(Kg)</label>
+                        <input className="inputDados shadow-md" type="text" disabled value={p_peso} />
+                    </div>
+                    <div className="campoForm">
+                        <label className="font-semibold">Altura(m)</label>
+                        <input className="inputDados shadow-md" type="text" disabled value={p_altura} />
+                    </div>
+                    <div className="campoForm">
+                        <label className="font-semibold">IMC</label>
+                        <input className="inputDados shadow-md" type="text" disabled value={p_IMC} />
+                    </div>
+                    <div className="campoForm">
+                        <label className="font-semibold">Data</label>
+                        <input className="inputDados shadow-md" disabled value={data} />
+                    </div>
+                    <button className="buttonDados" onClick={record}><FaRegSave className="mx-auto text-xl" /></button>
                 </div>
-                <div className="campoForm">
-                    <label>Peso(Kg)</label>
-                    <input className="inputDados" type="text" disabled value={p_peso} />
-                </div>
-                <div className="campoForm">
-                    <label>Altura(m)</label>
-                    <input className="inputDados" type="text" disabled value={p_altura} />
-                </div>
-                <div className="campoForm">
-                    <label>IMC</label>
-                    <input className="inputDados" type="text" disabled value={p_IMC} />
-                </div>
-                <div className="campoForm">
-                    <label>Data</label>
-                    <input className="inputDados" disabled value={data} />
-                </div>
-                <button className="buttonDados" onClick={record}><FaRegSave className="mx-auto text-xl"/></button>
-            </div>
 
-            <div className="grid">
-                <div className="gridLinhaTitulo">
-                    <div className="gridTitulo">Nome</div>
-                    <div className="gridTitulo">Peso</div>
-                    <div className="gridTitulo">Altura</div>
-                    <div className="gridTitulo">IMC</div>
-                    <div className="gridTitulo">Data</div>
-                </div>
-                <div className="gridLinhaDados">
-                    {
-                        dados.map((e: any) => {
-                            return (
-                                < GridDados key={e.id} id={e.id} nome={e.nome} peso={e.peso} altura={e.altura} IMC={e.IMC} data={e.data} enviarFuncao={get_deleted_data} />
-                            )
-                        })
-                    }
+                <div className="grid">
+                    <div className="gridLinhaTitulo text-sm sm:text-base">
+                        <div className="gridTitulo text-sm sm:text-base">Nome</div>
+                        <div className="gridTitulo text-sm sm:text-base pl-1">Peso</div>
+                        <div className="gridTitulo text-sm sm:text-base">Altura</div>
+                        <div className="gridTitulo text-sm sm:text-base">IMC</div>
+                        <div className="gridTitulo text-sm sm:text-base">Data</div>
+                    </div>
+                    <div className="gridLinhaDados">
+                        {
+                            dados.map((e: any) => {
+                                return (
+                                    < GridDados key={e.id} id={e.id} nome={e.nome} peso={e.peso} altura={e.altura} IMC={e.IMC} data={e.data} enviarFuncao={get_deleted_data} />
+                                )
+                            })
+                        }
+                    </div>
                 </div>
             </div>
         </div>
