@@ -33,22 +33,27 @@ export default function DadosIMC() {
     }
 
     function record() {
-        const id = crypto.randomUUID()
-        const obj = {
-            nome: nome,
-            peso: p_peso,
-            altura: p_altura,
-            IMC: p_IMC,
-            data: data,
-            id: id
-        }
 
-        setDados(prevDados => {
-            const updatedDados = [obj, ...prevDados]
-            localStorage.setItem('dados', JSON.stringify(updatedDados))
-            return updatedDados
-        })
-        setNome('')
+        if (p_IMC == '') {
+            
+        } else {
+            const id = crypto.randomUUID()
+            const obj = {
+                nome: nome,
+                peso: p_peso,
+                altura: p_altura,
+                IMC: p_IMC,
+                data: data,
+                id: id
+            }
+
+            setDados(prevDados => {
+                const updatedDados = [obj, ...prevDados]
+                localStorage.setItem('dados', JSON.stringify(updatedDados))
+                return updatedDados
+            })
+            setNome('')
+        }
     }
 
     return (
@@ -75,7 +80,7 @@ export default function DadosIMC() {
                         <label className="font-semibold">Data</label>
                         <input className="inputDados shadow-md" disabled value={data} />
                     </div>
-                    <button className="buttonDados" onClick={record}><FaRegSave className="mx-auto text-xl" /></button>
+                    <button className="buttonDados hover:scale-105 transition-transform" onClick={record}><FaRegSave className="mx-auto text-xl" /></button>
                 </div>
 
                 <div className="grid">

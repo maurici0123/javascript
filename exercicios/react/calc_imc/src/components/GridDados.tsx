@@ -36,7 +36,7 @@ export default function GridDados(props: GridDadosProps) {
             <div className="gridLinha pl-1">{props.peso}Kg</div>
             <div className="gridLinha">{props.altura}m</div>
             <div className="gridLinha">{props.IMC}</div>
-            <div className="flex justify-around">{props.data} <IoIosCloseCircleOutline className="text-xl text-zinc-500 mt-[2px] hover:text-red-500 cursor-pointer" values={props.id} onClick={() => deleteDados(props.id)} /></div>
+            <div className="flex justify-around sm:gap-6 lg:gap-10">{props.data} <IoIosCloseCircleOutline className="text-xl text-zinc-500 sm:mt-[2px] hover:text-red-500 cursor-pointer" values={props.id} onClick={() => deleteDados(props.id)} /></div>
         </div>
     )
 }
