@@ -7,7 +7,7 @@ export default function Join(props) {
     const handleSubmit = () => {
         const username = usernameRef.current.value
         if (!username.trim()) return
-        console.log('submit')
+        console.log('submit...')
         props.setChatVisibility(true)
     }
 
