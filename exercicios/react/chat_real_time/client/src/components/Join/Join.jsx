@@ -8,7 +8,7 @@ export default function Join(props) {
     const handleSubmit = async () => {
         const username = usernameRef.current.value
         if (!username.trim()) return
-        const socket = await io.connect('https://back-chat-8mup.onrender.com/')
+        const socket = await io.connect('http://localhost:3001')
         socket.emit('set_username', username)
         props.setSocket(socket)
         props.setChatVisibility(true)
