@@ -1,20 +1,29 @@
-import React, { useRef } from 'react'
+import React, {useRef} from 'react'
+import io from 'socket.io-client'
 
 export default function Join(props) {
 
     const usernameRef = useRef()
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const username = usernameRef.current.value
         if (!username.trim()) return
-        console.log('submit...')
+        const socket = await io.connect('http://localhost:3001')
+        socket.emit('set_username', username)
+        props.setSocket(socket)
         props.setChatVisibility(true)
+    }
+
+    const getEnterKey = (e) => {
+        if (e.code === 'Enter') {
+            handleSubmit()
+        }
     }
 
     return (
         <div>
             <h1>Join</h1>
-            <input type="text" ref={usernameRef} placeholder='Nome do usuário' />
+            <input type="text" ref={usernameRef} onKeyDown={(e) => getEnterKey(e)} placeholder='Nome do usuário' />
             <button onClick={() => handleSubmit()}>Entrar</button>
         </div>
     )
