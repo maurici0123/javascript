@@ -27,11 +27,9 @@ export default function Chat(props) {
     const clearInput = () => {
         messageRef.current.value = ''
     }
-
     const focusInput = () => {
         messageRef.current.focus()
     }
-
     const getEnterKey = (e) => {
         if (e.code === 'Enter') {
             handleSubmit()
