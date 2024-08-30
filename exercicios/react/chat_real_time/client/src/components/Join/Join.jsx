@@ -1,4 +1,5 @@
-import React, {useRef} from 'react'
+import './JoinStyle.css'
+import React, { useRef } from 'react'
 import io from 'socket.io-client'
 
 export default function Join(props) {
@@ -21,9 +22,22 @@ export default function Join(props) {
     }
 
     return (
-        <div>
-            <h1>Join</h1>
-            <input type="text" ref={usernameRef} onKeyDown={(e) => getEnterKey(e)} placeholder='Nome do usuário' />
+        <div className='main'>
+            <h1>Cadastro</h1>
+
+            <div className="input-group">
+                <input
+                    className="input-text"
+                    name="text" type="text"
+                    placeholder="Type here" autocomplete="off"
+                    ref={usernameRef} onKeyDown={(e) => getEnterKey(e)}
+                />
+                <label className="input-text-label" for="text">Nome do usuário</label>
+            </div>
+
+
+            {/* <input type="text" className='input' ref={usernameRef} onKeyDown={(e) => getEnterKey(e)} placeholder='Nome do usuário' /> */}
+
             <button onClick={() => handleSubmit()}>Entrar</button>
         </div>
     )

@@ -1,3 +1,4 @@
+import './ChatStyle.css'
 import React, { useRef, useState, useEffect } from 'react'
 
 export default function Chat(props) {
