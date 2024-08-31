@@ -1,5 +1,6 @@
 import './ChatStyle.css'
 import React, { useRef, useState, useEffect } from 'react'
+import { VscSend } from "react-icons/vsc";
 
 export default function Chat(props) {
 
@@ -38,15 +39,21 @@ export default function Chat(props) {
     }
 
     return (
-        <div>
-            <h1>chat</h1>
-            {
-                messageList.map((message, index) => (
-                    <p key={index} >{message.author}: {message.text}</p>
-                ))
-            }
-            <input type="text" ref={messageRef} onKeyDown={e => getEnterKey(e)} placeholder='Mensagem' />
-            <button onClick={() => handleSubmit()}>Enviar</button>
+        <div className='chat'>
+            <div className='chat-area'>
+                <div className='conversation'>
+                    {
+                        messageList.map((message, index) => (
+                            <p key={index} >{message.author}: {message.text}</p>
+                        ))
+                    }
+                </div>
+
+                <div className='input-area'>
+                    <input type="text" className='send-input' ref={messageRef} onKeyDown={e => getEnterKey(e)} placeholder='Mensagem' />
+                    <button className='send-button' onClick={() => handleSubmit()}><VscSend /></button>
+                </div>
+            </div>
         </div>
     )
 }

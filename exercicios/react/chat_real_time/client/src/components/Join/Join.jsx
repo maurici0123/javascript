@@ -22,23 +22,20 @@ export default function Join(props) {
     }
 
     return (
-        <div className='main'>
+        <div className='cadastro'>
             <h1>Cadastro</h1>
 
             <div className="input-group">
                 <input
                     className="input-text"
                     name="text" type="text"
-                    placeholder="Type here" autocomplete="off"
+                    placeholder="Type here" autoComplete='off'
                     ref={usernameRef} onKeyDown={(e) => getEnterKey(e)}
                 />
-                <label className="input-text-label" for="text">Nome do usuário</label>
+                <label className="input-text-label" htmlFor="text">Nome do usuário</label>
             </div>
 
-
-            {/* <input type="text" className='input' ref={usernameRef} onKeyDown={(e) => getEnterKey(e)} placeholder='Nome do usuário' /> */}
-
-            <button onClick={() => handleSubmit()}>Entrar</button>
+            <button className='register-button' onClick={() => handleSubmit()}>Entrar</button>
         </div>
     )
 }
