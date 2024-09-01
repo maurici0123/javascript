@@ -51,7 +51,7 @@ export default function Chat(props) {
 
                 <div className='input-area'>
                     <input type="text" className='send-input' ref={messageRef} onKeyDown={e => getEnterKey(e)} placeholder='Mensagem' />
-                    <button className='send-button' onClick={() => handleSubmit()}><VscSend /></button>
+                    <button className='send-button' onClick={() => handleSubmit()}><VscSend className='send-icon'/></button>
                 </div>
             </div>
         </div>

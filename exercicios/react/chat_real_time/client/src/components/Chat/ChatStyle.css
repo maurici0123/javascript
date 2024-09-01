@@ -10,28 +10,48 @@
 .chat-area{
     display: flex;
     flex-direction: column;
-    width: 600px;
-    height: 800px;
-    border-radius: 10px;
+    width: 700px;
+    height: 850px;
     background-color: #242424;
-    border: 1px solid #181818;
-    box-shadow: 0 0 50px #4d4d4d;
+    box-shadow: 0 0 50px #505050;
 }
 
 .conversation{
-    height: 750px;
+    height: 100%;
+    border-radius: 10px 10px 0 0;
+    padding: 10px 20px;
+    overflow: hidden;
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    background-color: #ddd;
+    color: #151515;
 }
 
 .input-area{
     display: flex;
     width: 100%;
-    height: 50px;
+    height: 60px;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
 }
 
 .send-input{
     width: 90%;
+    font-size: 18px;
+    padding: 20px;
+}
+.send-input:focus{
+    outline: none;
 }
 
 .send-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 10%;
+}
+
+.send-icon{
+    font-size: 20px;
+    color: #151515;
 }
