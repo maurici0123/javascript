@@ -1,4 +1,4 @@
-.chat{
+.chat {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7,51 +7,113 @@
     margin-top: 50px;
 }
 
-.chat-area{
+.chat-area {
     display: flex;
     flex-direction: column;
     width: 700px;
     height: 850px;
-    background-color: #242424;
-    box-shadow: 0 0 50px #505050;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #eee;
+    box-shadow: 0 0 50px #444;
 }
 
-.conversation{
+.conversation {
     height: 100%;
-    border-radius: 10px 10px 0 0;
-    padding: 10px 20px;
+    padding: 20px;
     overflow: hidden;
-    overflow-y: auto; 
-    overflow-x: hidden; 
-    background-color: #ddd;
+    overflow-y: auto;
+    overflow-x: hidden;
     color: #151515;
 }
 
-.input-area{
-    display: flex;
-    width: 100%;
-    height: 60px;
-    border-radius: 0 0 10px 10px;
-    overflow: hidden;
+.menssage-area {
+    margin: 10px 0;
 }
 
-.send-input{
-    width: 90%;
-    font-size: 18px;
-    padding: 20px;
+.my-message-area {
+    text-align: right;
 }
-.send-input:focus{
+
+.other-message-area {
+    text-align: left;
+}
+
+.author {
+    height: 25px;
+    font-size: 13px;
+    padding-bottom: 5px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.my-author {
+    background-color: transparent;
+}
+
+.other-author {
+    background-color: transparent;
+}
+
+.menssage {
+    font-size: 18px;
+    line-height: 24px;
+    text-align: left;
+    max-width: 60%;
+    display: inline-block;
+    padding: 5px 15px 10px 15px;
+    border-radius: 10px;
+    color: #eee;
+}
+
+.my-message {
+    background-color: #452285;
+}
+
+.other-message {
+    background-color: #334147;
+}
+
+.input-area {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    background-color: #444;
+}
+
+.send-input {
+    width: 90%;
+    height: 40px;
+    border-radius: 10px;
+    margin: 0 10px;
+    font-size: 18px;
+    padding: 0 20px;
+    border: none;
+    color: #eee;
+    background-color: #444;
+    box-shadow: inset 0 0 5px #111;
+}
+
+.send-input:focus {
     outline: none;
 }
 
-.send-button{
+.send-input::placeholder {
+    color: #eee;
+}
+
+.send-button {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     width: 10%;
+    border: none;
+    background-color: transparent;
 }
 
-.send-icon{
-    font-size: 20px;
-    color: #151515;
+.send-icon {
+    font-size: 25px;
+    color: #fff;
 }
