@@ -33,22 +33,16 @@ export default function Chat(props) {
         focusInput()
     }
 
-    const clearInput = () => {
-        messageRef.current.value = ''
-    }
+    const clearInput = () => messageRef.current.value = ''
 
-    const focusInput = () => {
-        messageRef.current.focus()
-    }
+    const focusInput = () => messageRef.current.focus()
+
+    const scrollDown = () => bottomRef.current.scrollIntoView()
 
     const getEnterKey = (e) => {
         if (e.code === 'Enter') {
             handleSubmit()
         }
-    }
-
-    const scrollDown = () => {
-        bottomRef.current.scrollIntoView()
     }
 
     const isLastTwoMessagesSameAuthor = (index) => {
@@ -74,7 +68,9 @@ export default function Chat(props) {
                                         ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}:
                                     </p>
 
-                                    {message.text}
+                                    <p>{message.text}</p>
+
+                                    <p className='time'>{message.time}</p>
                                 </div>
                             </div>
                         ))
