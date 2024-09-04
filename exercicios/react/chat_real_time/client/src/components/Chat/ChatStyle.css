@@ -4,14 +4,13 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: 50px;
 }
 
 .chat-area {
     display: flex;
     flex-direction: column;
     width: 700px;
-    height: 850px;
+    height: 90%;
     border-radius: 8px;
     overflow: hidden;
     background-color: #eee;
@@ -55,6 +54,7 @@
 
 .author {
     height: 20px;
+    margin-top: -6px;
     font-size: 13px;
     font-weight: 500;
     color: #FFBC38;
@@ -79,7 +79,7 @@
     max-width: 60%;
     display: inline-block;
     padding: 5px 15px;
-    border-radius: 10px;
+    border-radius: 5px;
     color: #eee;
 }
 

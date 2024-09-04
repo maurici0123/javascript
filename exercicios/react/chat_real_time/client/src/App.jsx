@@ -8,14 +8,12 @@ export default function App() {
   const [socket, setSocket] = useState(null)
 
   return (
-    <>
-
+    <div className='main'>
       {chatVisibility ? (
         <Chat socket={socket} />
       ) : (
         <Join setChatVisibility={setChatVisibility} setSocket={setSocket} />
       )}
-
-    </>
+    </div>
   )
 }

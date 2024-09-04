@@ -52,7 +52,7 @@ export default function Chat(props) {
     }
 
     const isLastTwoMessagesSameAuthor = (index) => {
-        if (index > 0 ) {
+        if (index > 0) {
             return messageList[index].authorId === messageList[index - 1].authorId;
         }
         return false;
@@ -69,8 +69,11 @@ export default function Chat(props) {
                                 ${isLastTwoMessagesSameAuthor(index) && 'pasted-message'}`}>
 
                                 <div className={`message ${message.authorId === props.socket.id ? 'my-message' : 'other-message'}`}>
-                                    <p className={`author ${message.authorId === props.socket.id ? 'my-author' : 'other-author'}
-                                        ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}:</p>
+                                    <p
+                                        className={`author ${message.authorId === props.socket.id ? 'my-author' : 'other-author'}
+                                        ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}:
+                                    </p>
+
                                     {message.text}
                                 </div>
                             </div>
