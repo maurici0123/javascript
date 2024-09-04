@@ -51,12 +51,12 @@ export default function Chat(props) {
         bottomRef.current.scrollIntoView()
     }
 
-    const isLastTwoMessagesSameAuthor = () => {
-        if (messageList.length >= 2) {
-            return messageList[messageList.length - 1].authorId === messageList[messageList.length - 2].authorId
+    const isLastTwoMessagesSameAuthor = (index) => {
+        if (index > 0 ) {
+            return messageList[index].authorId === messageList[index - 1].authorId;
         }
-        return false
-    };
+        return false;
+    }
 
     return (
         <div className='chat'>
@@ -64,13 +64,13 @@ export default function Chat(props) {
                 <div className='conversation'>
                     {
                         messageList.map((message, index) => (
-                            <div key={index} className={`menssage-area 
-                                ${message.authorId === props.socket.id ? 'my-message-area' : 'other-message-area'} 
-                                ${isLastTwoMessagesSameAuthor() ? 'pasted-message' : 'separate-message'}
-                                `}>
+                            <div key={index} className={`message-area 
+                                ${message.authorId === props.socket.id ? 'my-message-area' : 'other-message-area'}
+                                ${isLastTwoMessagesSameAuthor(index) && 'pasted-message'}`}>
 
-                                <div className={`menssage ${message.authorId === props.socket.id ? 'my-message' : 'other-message'}`}>
-                                    <p className={`author ${message.authorId === props.socket.id ? 'my-author' : 'other-author'}`}>{message.author}:</p>
+                                <div className={`message ${message.authorId === props.socket.id ? 'my-message' : 'other-message'}`}>
+                                    <p className={`author ${message.authorId === props.socket.id ? 'my-author' : 'other-author'}
+                                        ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}:</p>
                                     {message.text}
                                 </div>
                             </div>

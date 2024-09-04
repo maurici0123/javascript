@@ -41,7 +41,7 @@
     background-color: #999;
 }
 
-.menssage-area {
+.message-area {
     margin-top: 10px;
 }
 
@@ -68,7 +68,11 @@
     background-color: transparent;
 }
 
-.menssage {
+.author-pasted {
+    display: none;
+}
+
+.message {
     font-size: 18px;
     line-height: 24px;
     text-align: left;
@@ -88,7 +92,7 @@
 }
 
 .pasted-message {
-    font-style: italic;
+    margin-top: 1px;
 }
 
 .input-area {
