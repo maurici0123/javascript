@@ -1,8 +1,17 @@
 import './JoinStyle.css'
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import io from 'socket.io-client'
 
 export default function Join(props) {
+
+    useEffect(() => {
+        if (localStorage.getItem('authorId')) {
+            const socket = io.connect('http://localhost:3001')
+            socket.emit('set_username', localStorage.getItem('username'))
+            props.setSocket(socket)
+            props.setChatVisibility(true)
+        }
+    }, [])
 
     const usernameRef = useRef()
 

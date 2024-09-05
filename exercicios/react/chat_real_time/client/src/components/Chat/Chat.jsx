@@ -8,17 +8,23 @@ export default function Chat(props) {
     const messageRef = useRef()
     const [messageList, setMessageList] = useState([])
     const [heightSendInput, setHeightSendInput] = useState(40)
+    const [ID, setID] = useState('')
 
     useEffect(() => {
-        //!setMessageList(JSON.parse(localStorage.getItem('messages')))
+        //setMessageList(JSON.parse(localStorage.getItem('messages')))
     }, [])
 
     useEffect(() => {
         props.socket.on('recive_message', data => {
+
+            setID(data.authorId)
+            localStorage.setItem('authorId', data.authorId)
+            localStorage.setItem('username', data.author)
+
             setMessageList(current => {
                 const upadateMessage = [...current, data]
-                localStorage.setItem('messages', JSON.stringify(upadateMessage))
-                localStorage.clear() //?????????
+                //localStorage.setItem('messages', JSON.stringify(upadateMessage))
+                //localStorage.clear()
                 return upadateMessage
             })
         })
@@ -69,7 +75,6 @@ export default function Chat(props) {
         }
     }
 
-
     const isLastTwoMessagesSameAuthor = (index) => {
         if (index > 0) {
             return messageList[index].authorId === messageList[index - 1].authorId
@@ -84,12 +89,12 @@ export default function Chat(props) {
                     {
                         messageList.map((message, index) => (
                             <div key={index} className={`message-area 
-                                ${message.authorId === props.socket.id ? 'my-message-area' : 'other-message-area'}
+                                ${message.authorId === ID ? 'my-message-area' : 'other-message-area'}
                                 ${isLastTwoMessagesSameAuthor(index) && 'pasted-message'}`}>
 
-                                <div className={`message ${message.authorId === props.socket.id ? 'my-message' : 'other-message'}`}>
+                                <div className={`message ${message.authorId === ID ? 'my-message' : 'other-message'}`}>
                                     <p
-                                        className={`author ${message.authorId === props.socket.id ? 'my-author' : 'other-author'}
+                                        className={`author ${message.authorId === ID ? 'my-author' : 'other-author'}
                                         ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}:
                                     </p>
 
