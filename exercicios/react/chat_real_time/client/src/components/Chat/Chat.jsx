@@ -10,8 +10,17 @@ export default function Chat(props) {
     const [heightSendInput, setHeightSendInput] = useState(40)
 
     useEffect(() => {
+        //!setMessageList(JSON.parse(localStorage.getItem('messages')))
+    }, [])
+
+    useEffect(() => {
         props.socket.on('recive_message', data => {
-            setMessageList((current) => [...current, data])
+            setMessageList(current => {
+                const upadateMessage = [...current, data]
+                localStorage.setItem('messages', JSON.stringify(upadateMessage))
+                localStorage.clear() //?????????
+                return upadateMessage
+            })
         })
 
         return () => {
