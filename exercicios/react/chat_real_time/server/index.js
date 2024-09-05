@@ -18,7 +18,8 @@ io.on('connection', socket => {
     socket.on('message', text => {
 
         const time = new Date()
-        const timestamp = `${time.getHours()}:${time.getMinutes()}`
+        const formatNumber = (number) => (number < 10 ? `0${number} ` : number)
+        const timestamp = `${formatNumber(time.getHours())}:${formatNumber(time.getMinutes())}`
 
         io.emit('recive_message', {
             text,

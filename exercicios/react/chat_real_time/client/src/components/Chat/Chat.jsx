@@ -1,12 +1,13 @@
 import './ChatStyle.css'
-import React, { useRef, useState, useEffect } from 'react'
-import { VscSend } from "react-icons/vsc";
+import React, { useRef, useState, useEffect, useCallback } from 'react'
+import { VscSend } from "react-icons/vsc"
 
 export default function Chat(props) {
 
     const bottomRef = useRef()
     const messageRef = useRef()
     const [messageList, setMessageList] = useState([])
+    const [heightSendInput, setHeightSendInput] = useState(40)
 
     useEffect(() => {
         props.socket.on('recive_message', data => {
@@ -39,17 +40,32 @@ export default function Chat(props) {
 
     const scrollDown = () => bottomRef.current.scrollIntoView()
 
-    const getEnterKey = (e) => {
+    const getEnterKey = (e) => { //! arrumar =======================================================
         if (e.code === 'Enter') {
-            handleSubmit()
+            if (e.shiftKey || e.ctrlKey) {
+                const textarea = messageRef.current
+                const start = textarea.selectionStart
+                const end = textarea.selectionEnd
+                textarea.value = `${textarea.value.substring(0, start)}\n${textarea.value.substring(end)}`
+                textarea.selectionStart = textarea.selectionEnd = start + 1
+
+                const lineCount = textarea.value.split('\n').length
+                if (lineCount <= 5) {
+                    setHeightSendInput(prev => prev += 24)
+                }
+            } else {
+                handleSubmit()
+            }
+            e.preventDefault()
         }
     }
 
+
     const isLastTwoMessagesSameAuthor = (index) => {
         if (index > 0) {
-            return messageList[index].authorId === messageList[index - 1].authorId;
+            return messageList[index].authorId === messageList[index - 1].authorId
         }
-        return false;
+        return false
     }
 
     return (
@@ -79,7 +95,8 @@ export default function Chat(props) {
                 </div>
 
                 <div className='input-area'>
-                    <input type="text" className='send-input' ref={messageRef} onKeyDown={e => getEnterKey(e)} placeholder='Mensagem' />
+                    <textarea type="text" style={{ height: `${heightSendInput}px` }}
+                        className='send-input' ref={messageRef} onKeyDown={e => getEnterKey(e)} placeholder='Mensagem' />
                     <button className='send-button' onClick={() => handleSubmit()}><VscSend className='send-icon' /></button>
                 </div>
             </div>
