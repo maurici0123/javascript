@@ -9,11 +9,9 @@ export default function App() {
 
   return (
     <div className='main'>
-      {chatVisibility ? (
-        <Chat socket={socket} />
-      ) : (
-        <Join setChatVisibility={setChatVisibility} setSocket={setSocket} />
-      )}
+      {
+        chatVisibility ? (<Chat socket={socket} />) : (<Join setChatVisibility={setChatVisibility} setSocket={setSocket} />)
+      }
     </div>
   )
 }

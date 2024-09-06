@@ -8,6 +8,7 @@ export default function Join(props) {
         if (localStorage.getItem('authorId')) {
             const socket = io.connect('http://localhost:3001')
             socket.emit('set_username', localStorage.getItem('username'))
+            //socket.emit('set_userid', localStorage.getItem('authorId'))
             props.setSocket(socket)
             props.setChatVisibility(true)
         }
@@ -20,6 +21,7 @@ export default function Join(props) {
         if (!username.trim()) return
         const socket = await io.connect('http://localhost:3001')
         socket.emit('set_username', username)
+        //socket.emit('set_userid', crypto.randomUUID())
         props.setSocket(socket)
         props.setChatVisibility(true)
     }
