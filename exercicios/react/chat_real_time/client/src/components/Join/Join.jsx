@@ -5,23 +5,42 @@ import io from 'socket.io-client'
 export default function Join(props) {
 
     useEffect(() => {
-        if (localStorage.getItem('authorId')) {
-            const socket = io.connect('http://localhost:3001')
+        let userId = localStorage.getItem('userId') 
+        let username = localStorage.getItem('username') 
+
+        if (userId && username) {
+            
+            const socket = io.connect('http://localhost:3001', {
+                query: { userId } // Passa o userId na query ao conectar ao servidor
+            })
+
             socket.emit('set_username', localStorage.getItem('username'))
-            //socket.emit('set_userid', localStorage.getItem('authorId'))
             props.setSocket(socket)
             props.setChatVisibility(true)
+
+            socket.emit('set_username', username)
+        }
+
+        if (!userId) {
+            userId = crypto.randomUUID()  // Gera um UUID único para o usuário
+            localStorage.setItem('userId', userId)  // Armazena no localStorage
         }
     }, [])
 
     const usernameRef = useRef()
 
     const handleSubmit = async () => {
+
         const username = usernameRef.current.value
         if (!username.trim()) return
-        const socket = await io.connect('http://localhost:3001')
+
+        const userId = localStorage.getItem('userId') // Pega o userId do localStorage
+        const socket = await io.connect('http://localhost:3001', {
+            query: { userId }  // Envia o userId ao conectar
+        })
+
         socket.emit('set_username', username)
-        //socket.emit('set_userid', crypto.randomUUID())
+        localStorage.setItem('username', username)
         props.setSocket(socket)
         props.setChatVisibility(true)
     }

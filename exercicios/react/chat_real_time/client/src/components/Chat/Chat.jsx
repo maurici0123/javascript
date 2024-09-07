@@ -4,13 +4,15 @@ import { VscSend } from "react-icons/vsc"
 
 export default function Chat(props) {
 
+    const userId = localStorage.getItem('userId')
+
     const bottomRef = useRef()
     const messageRef = useRef()
     const [messageList, setMessageList] = useState([])
     const [heightSendInput, setHeightSendInput] = useState(40)
 
     useEffect(() => {
-        //localStorage.getItem('messages') && setMessageList(JSON.parse(localStorage.getItem('messages')))
+        localStorage.getItem('messages') && setMessageList(JSON.parse(localStorage.getItem('messages')))
     }, [])
 
     useEffect(() => {
@@ -20,7 +22,7 @@ export default function Chat(props) {
 
             setMessageList(current => {
                 const upadateMessage = [...current, data]
-                //localStorage.setItem('messages', JSON.stringify(upadateMessage))
+                localStorage.setItem('messages', JSON.stringify(upadateMessage))
                 //localStorage.clear()
                 return upadateMessage
             })
@@ -35,22 +37,13 @@ export default function Chat(props) {
         scrollDown()
     }, [messageList])
 
-    const handleSubmit = () => {
-        const message = messageRef.current.value
-        if (!message.trim()) return
-
-        props.socket.emit('message', message)
-        clearInput()
-        focusInput()
-    }
-
     const clearInput = () => messageRef.current.value = ''
 
     const focusInput = () => messageRef.current.focus()
 
     const scrollDown = () => bottomRef.current.scrollIntoView()
 
-    const getEnterKey = (e) => { //! arrumar =======================================================
+    const getEnterKey = (e) => {
         if (e.code === 'Enter') {
             if (e.shiftKey || e.ctrlKey) {
                 const textarea = messageRef.current
@@ -69,12 +62,21 @@ export default function Chat(props) {
             e.preventDefault()
         }
     }
-
+    
     const isLastTwoMessagesSameAuthor = (index) => {
         if (index > 0) {
             return messageList[index].authorId === messageList[index - 1].authorId
         }
         return false
+    }
+
+    const handleSubmit = () => {
+        const message = messageRef.current.value
+        if (!message.trim()) return
+
+        props.socket.emit('message', message)
+        clearInput()
+        focusInput()
     }
 
     return (
@@ -84,16 +86,15 @@ export default function Chat(props) {
                     {
                         messageList.map((message, index) => (
                             <div key={index} className={`message-area 
-                                ${message.authorId === props.socket.id ? 'my-message-area' : 'other-message-area'}
+                                ${message.authorId === userId ? 'my-message-area' : 'other-message-area'}
                                 ${isLastTwoMessagesSameAuthor(index) && 'pasted-message'}`}>
 
                                 {/* {console.log(message.authorId)} */}
+                                {/* {console.log(userId)} */}
 
-                                {/* {console.log(props.socket.id)} */}
-
-                                <div className={`message ${message.authorId === props.socket.id ? 'my-message' : 'other-message'}`}>
+                                <div className={`message ${message.authorId === userId ? 'my-message' : 'other-message'}`}>
                                     <p
-                                        className={`author ${message.authorId === props.socket.id ? 'my-author' : 'other-author'}
+                                        className={`author ${message.authorId === userId ? 'my-author' : 'other-author'}
                                         ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}:
                                     </p>
 
