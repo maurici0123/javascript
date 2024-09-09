@@ -1,6 +1,7 @@
 import './ChatStyle.css'
 import React, { useRef, useState, useEffect } from 'react'
 import { VscSend } from "react-icons/vsc"
+import { HiChevronDown } from "react-icons/hi"
 
 export default function Chat(props) {
 
@@ -8,8 +9,9 @@ export default function Chat(props) {
     const messageRef = useRef()
     const [messageList, setMessageList] = useState([])
     const [heightSendInput, setHeightSendInput] = useState(40)
+    const [displayIcon, setDisplayIcon] = useState('none')
     const userId = localStorage.getItem('userId')
-    
+
     useEffect(() => {
         localStorage.getItem('messages') && setMessageList(JSON.parse(localStorage.getItem('messages')))
     }, [])
@@ -88,14 +90,13 @@ export default function Chat(props) {
                 <div className='conversation'>
                     {
                         messageList.map((message, index) => (
-                            <div key={index} className={`message-area 
+                            <div key={index} className={`message-area
                                 ${message.authorId === userId ? 'my-message-area' : 'other-message-area'}
                                 ${isLastTwoMessagesSameAuthor(index) && 'pasted-message'}`}>
 
                                 <div className={`message ${message.authorId === userId ? 'my-message' : 'other-message'}`}>
-                                    <p
-                                        className={`author ${message.authorId === userId ? 'my-author' : 'other-author'}
-                                        ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}:
+                                    <p className={`author ${message.authorId === userId ? 'my-author' : 'other-author'}
+                                        ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}
                                     </p>
 
                                     <span>{message.text}</span>
