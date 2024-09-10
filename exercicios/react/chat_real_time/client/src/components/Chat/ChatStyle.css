@@ -1,9 +1,31 @@
 .chat {
+    position: relative;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.delete-button{
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    left: calc(100% - 50px);
+    bottom: calc(100% - 50px);
+}
+
+
+
+.delete-icon{
+    cursor: pointer;
+    font-size: 30px;
+    color: #eee;
+}
+
+.delete-icon:active{
+    scale: .9;
+    color: #aaa;
 }
 
 .chat-area {

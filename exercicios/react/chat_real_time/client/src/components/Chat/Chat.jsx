@@ -1,7 +1,7 @@
 import './ChatStyle.css'
 import React, { useRef, useState, useEffect } from 'react'
 import { VscSend } from "react-icons/vsc"
-import { HiChevronDown } from "react-icons/hi"
+import { MdDelete } from "react-icons/md"
 
 export default function Chat(props) {
 
@@ -22,7 +22,6 @@ export default function Chat(props) {
             setMessageList(current => {
                 const upadateMessage = [...current, data]
                 localStorage.setItem('messages', JSON.stringify(upadateMessage))
-                //localStorage.clear()
                 return upadateMessage
             })
         })
@@ -35,6 +34,11 @@ export default function Chat(props) {
     useEffect(() => {
         scrollDown()
     }, [messageList])
+
+    const clearDatas = () => {
+        localStorage.clear()
+        window.location.reload()
+    }
 
     const clearInput = () => messageRef.current.value = ''
 
@@ -86,6 +90,11 @@ export default function Chat(props) {
 
     return (
         <div className='chat'>
+
+            <button className='delete-button' title='apagar todos os dados' onClick={() => clearDatas()}>
+                <MdDelete className='delete-icon' />
+            </button>
+
             <div className='chat-area'>
                 <div className='conversation'>
                     {
