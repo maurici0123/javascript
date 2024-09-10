@@ -39,7 +39,7 @@ export default function Chat(props) {
         localStorage.clear()
         window.location.reload()
     }
-
+    
     const clearInput = () => messageRef.current.value = ''
 
     const focusInput = () => messageRef.current.focus()
