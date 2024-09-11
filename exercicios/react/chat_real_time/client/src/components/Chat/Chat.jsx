@@ -2,6 +2,7 @@ import './ChatStyle.css'
 import React, { useRef, useState, useEffect } from 'react'
 import { VscSend } from "react-icons/vsc"
 import { MdDelete } from "react-icons/md"
+import { IoIosMore } from "react-icons/io";
 
 export default function Chat(props) {
 
@@ -39,7 +40,7 @@ export default function Chat(props) {
         localStorage.clear()
         window.location.reload()
     }
-    
+
     const clearInput = () => messageRef.current.value = ''
 
     const focusInput = () => messageRef.current.focus()
@@ -91,9 +92,9 @@ export default function Chat(props) {
     return (
         <div className='chat'>
 
-            <button className='delete-button' title='apagar todos os dados' onClick={() => clearDatas()}>
+            {/* <button className='delete-button' title='apagar todos os dados' onClick={() => clearDatas()}>
                 <MdDelete className='delete-icon' />
-            </button>
+            </button> */}
 
             <div className='chat-area'>
                 <div className='conversation'>
@@ -119,9 +120,11 @@ export default function Chat(props) {
                 </div>
 
                 <div className='input-area'>
-                    <textarea type="text" style={{ height: `${heightSendInput}px` }}
-                        className='send-input' ref={messageRef} placeholder='Mensagem'
-                        onKeyDown={e => getEnterKey(e)} onChange={input_lines} />
+
+                    <IoIosMore className='option-icon'/>
+
+                    <textarea type="text" style={{ height: `${heightSendInput}px` }} className='send-input' ref={messageRef} placeholder='Mensagem' onKeyDown={e => getEnterKey(e)} onChange={input_lines} />
+
                     <button className='send-button' onClick={() => handleSubmit()}><VscSend className='send-icon' /></button>
                 </div>
             </div>
