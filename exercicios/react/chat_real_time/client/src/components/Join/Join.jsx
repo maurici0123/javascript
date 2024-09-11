@@ -9,7 +9,6 @@ export default function Join(props) {
         let username = localStorage.getItem('username') 
 
         if (userId && username) {
-            
             const socket = io.connect('http://localhost:3001', {
                 query: { userId } // Passa o userId na query ao conectar ao servidor
             })

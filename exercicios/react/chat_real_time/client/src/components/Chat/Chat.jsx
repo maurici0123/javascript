@@ -10,7 +10,7 @@ export default function Chat(props) {
     const messageRef = useRef()
     const [messageList, setMessageList] = useState([])
     const [heightSendInput, setHeightSendInput] = useState(40)
-    const [displayIcon, setDisplayIcon] = useState('none')
+    const [displayOption, setDisplayOption] = useState('none')
     const userId = localStorage.getItem('userId')
 
     useEffect(() => {
@@ -36,16 +36,26 @@ export default function Chat(props) {
         scrollDown()
     }, [messageList])
 
-    const clearDatas = () => {
-        localStorage.clear()
-        window.location.reload()
-    }
-
     const clearInput = () => messageRef.current.value = ''
 
     const focusInput = () => messageRef.current.focus()
 
     const scrollDown = () => bottomRef.current.scrollIntoView()
+
+    const clearDatas = () => {
+        localStorage.clear()
+        window.location.reload()
+    }
+
+    const handleSubmit = () => {
+        const message = messageRef.current.value
+        if (!message.trim()) return
+
+        props.socket.emit('message', message)
+        clearInput()
+        focusInput()
+        setHeightSendInput(40)
+    }
 
     const input_lines = () => {
         const textarea = messageRef.current
@@ -79,23 +89,18 @@ export default function Chat(props) {
         return false
     }
 
-    const handleSubmit = () => {
-        const message = messageRef.current.value
-        if (!message.trim()) return
-
-        props.socket.emit('message', message)
-        clearInput()
-        focusInput()
-        setHeightSendInput(40)
+    const showOption = () => {
+        setDisplayOption(prev => {
+            if (prev == 'none') {
+                return 'flex'
+            } else {
+                return 'none'
+            }
+        })
     }
 
     return (
         <div className='chat'>
-
-            {/* <button className='delete-button' title='apagar todos os dados' onClick={() => clearDatas()}>
-                <MdDelete className='delete-icon' />
-            </button> */}
-
             <div className='chat-area'>
                 <div className='conversation'>
                     {
@@ -120,8 +125,14 @@ export default function Chat(props) {
                 </div>
 
                 <div className='input-area'>
+                    <div className='displayOption' style={{ display: displayOption }}>
+                        <div className='delete-button' onClick={() => clearDatas()}>
+                            <MdDelete className='delete-icon' />
+                                <span>Deletar todos os dados</span>
+                        </div>
+                    </div>
 
-                    <IoIosMore className='option-icon'/>
+                    <IoIosMore className='option-icon' onClick={() => showOption()} />
 
                     <textarea type="text" style={{ height: `${heightSendInput}px` }} className='send-input' ref={messageRef} placeholder='Mensagem' onKeyDown={e => getEnterKey(e)} onChange={input_lines} />
 
