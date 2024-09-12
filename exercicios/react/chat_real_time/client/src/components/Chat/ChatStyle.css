@@ -9,7 +9,7 @@
 .chat-area {
     display: flex;
     flex-direction: column;
-    width: 700px;
+    width: 900px;
     height: 95%;
     border-radius: 8px;
     overflow: hidden;
@@ -31,12 +31,13 @@
 }
 
 .conversation::-webkit-scrollbar-thumb {
-    background-color: #bbb;
+    cursor: pointer;
+    background-color: #aaaaaabd;
     border-radius: 3px;
 }
 
 .conversation::-webkit-scrollbar-thumb:hover {
-    background-color: #999;
+    background-color: #888;
 }
 
 .message-area {
@@ -74,7 +75,7 @@
 .message {
     line-height: 24px;
     text-align: left;
-    max-width: 60%;
+    max-width: 70%;
     display: inline-block;
     padding: 5px 35px 5px 10px;
     border-radius: 5px;
@@ -105,7 +106,7 @@
 .input-area {
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     background-color: #444;
 }
 
@@ -152,20 +153,21 @@
 }
 
 .option-icon {
-    width: 32px;
-    cursor: pointer;
+    width: 31px;
     font-size: 30px;
     margin-left: 5px;
     padding: 5px;
-    border-radius: 18px;
+    border-radius: 19px;
+    margin-bottom: 14px;
+    cursor: pointer;
 }
 
 .send-input {
     width: 90%;
-    border-radius: 10px;
+    border-radius: 8px;
     margin: 10px 5px;
     font-size: 16px;
-    padding: 7px 20px;
+    padding: 8px 20px;
     border: none;
     resize: none;
     color: #eee;
@@ -181,6 +183,21 @@
     color: #eee;
 }
 
+.send-input::-webkit-scrollbar {
+    background-color: transparent;
+    width: 8px;
+}
+
+.send-input::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    background-color: #888;
+    border-radius: 3px;
+}
+
+.send-input::-webkit-scrollbar-thumb:hover {
+    background-color: #666;
+}
+
 .send-button {
     display: flex;
     justify-content: center;
@@ -188,6 +205,7 @@
     cursor: pointer;
     width: 10%;
     border: none;
+    margin-bottom: 17px;
     background-color: transparent;
 }
 
@@ -196,7 +214,7 @@
     color: #eee;
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 910px) {
 
     .chat-area {
         width: 98%;

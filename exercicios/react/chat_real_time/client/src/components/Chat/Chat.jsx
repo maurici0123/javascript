@@ -11,6 +11,7 @@ export default function Chat(props) {
     const [messageList, setMessageList] = useState([])
     const [heightSendInput, setHeightSendInput] = useState(40)
     const [displayOption, setDisplayOption] = useState('none')
+    const [backgroundColor, setBackgroundColor] = useState('transparent')
     const userId = localStorage.getItem('userId')
 
     useEffect(() => {
@@ -60,8 +61,8 @@ export default function Chat(props) {
     const input_lines = () => {
         const textarea = messageRef.current
         const lineCount = textarea.value.split('\n').length
-        if (lineCount < 8) {
-            setHeightSendInput(lineCount == 1 ? 40 : lineCount * 24 + 16)
+        if (lineCount <= 8) {
+            setHeightSendInput(lineCount == 1 ? 40 : lineCount * 21 + 16)
         }
     }
 
@@ -92,8 +93,10 @@ export default function Chat(props) {
     const showOption = () => {
         setDisplayOption(prev => {
             if (prev == 'none') {
+                setBackgroundColor('#666')
                 return 'flex'
             } else {
+                setBackgroundColor('transparent')
                 return 'none'
             }
         })
@@ -128,11 +131,11 @@ export default function Chat(props) {
                     <div className='displayOption' style={{ display: displayOption }}>
                         <div className='delete-button' onClick={() => clearDatas()}>
                             <MdDelete className='delete-icon' />
-                                <span>Deletar todos os dados</span>
+                            <span>Deletar todos os dados</span>
                         </div>
                     </div>
 
-                    <IoIosMore className='option-icon' onClick={() => showOption()} />
+                    <IoIosMore className='option-icon' style={{ backgroundColor: backgroundColor }} onClick={() => showOption()} />
 
                     <textarea type="text" style={{ height: `${heightSendInput}px` }} className='send-input' ref={messageRef} placeholder='Mensagem' onKeyDown={e => getEnterKey(e)} onChange={input_lines} />
 
