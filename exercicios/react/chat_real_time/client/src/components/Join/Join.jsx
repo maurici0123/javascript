@@ -16,8 +16,6 @@ export default function Join(props) {
             socket.emit('set_username', localStorage.getItem('username'))
             props.setSocket(socket)
             props.setChatVisibility(true)
-
-            socket.emit('set_username', username)
         }
 
         if (!userId) {

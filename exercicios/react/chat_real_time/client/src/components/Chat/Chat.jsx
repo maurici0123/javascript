@@ -12,6 +12,7 @@ export default function Chat(props) {
     const [heightSendInput, setHeightSendInput] = useState(40)
     const [displayOption, setDisplayOption] = useState('none')
     const [backgroundColor, setBackgroundColor] = useState('transparent')
+    const [text_break, setText_break] = useState(0)
     const userId = localStorage.getItem('userId')
 
     useEffect(() => {
@@ -49,6 +50,7 @@ export default function Chat(props) {
     }
 
     const handleSubmit = () => {
+        console.log(messageRef.current.cols)
         const message = messageRef.current.value
         if (!message.trim()) return
 
@@ -59,10 +61,21 @@ export default function Chat(props) {
     }
 
     const input_lines = () => {
-        const textarea = messageRef.current
+        const textarea = messageRef.current  //!========================================
         const lineCount = textarea.value.split('\n').length
-        if (lineCount <= 8) {
-            setHeightSendInput(lineCount == 1 ? 40 : lineCount * 21 + 16)
+
+        if (textarea.scrollHeight > textarea.clientHeight) {
+            //console.log(text_break)
+            setText_break(prev => prev + 1)
+        }
+
+        //console.log(lineCount)
+
+        const total_lines = lineCount + text_break
+        console.log(text_break)
+
+        if (total_lines <= 8) {
+            setHeightSendInput(total_lines == 1 ? 40 : total_lines * 21 + 16)
         }
     }
 
@@ -117,7 +130,7 @@ export default function Chat(props) {
                                         ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}
                                     </p>
 
-                                    <span>{message.text}</span>
+                                    <p className='value'>{message.text}</p>
 
                                     <p className='time'>{message.time}</p>
                                 </div>
@@ -137,7 +150,7 @@ export default function Chat(props) {
 
                     <IoIosMore className='option-icon' style={{ backgroundColor: backgroundColor }} onClick={() => showOption()} />
 
-                    <textarea type="text" style={{ height: `${heightSendInput}px` }} className='send-input' ref={messageRef} placeholder='Mensagem' onKeyDown={e => getEnterKey(e)} onChange={input_lines} />
+                    <textarea type="text" cols={40} style={{ height: `${heightSendInput}px` }} className='send-input' ref={messageRef} placeholder='Mensagem' onKeyDown={e => getEnterKey(e)} onChange={input_lines} />
 
                     <button className='send-button' onClick={() => handleSubmit()}><VscSend className='send-icon' /></button>
                 </div>
