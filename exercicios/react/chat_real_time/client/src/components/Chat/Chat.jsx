@@ -61,18 +61,30 @@ export default function Chat(props) {
     }
 
     const input_lines = () => {
-        const textarea = messageRef.current  //!========================================
-        const lineCount = textarea.value.split('\n').length
+        const textarea = messageRef.current;
 
-        if (textarea.scrollHeight > textarea.clientHeight) {
-            //console.log(text_break)
-            setText_break(prev => prev + 1)
+        const lineCount = textarea.value.split('\n').length;
+
+        const context = document.createElement('canvas').getContext('2d');
+        context.font = getComputedStyle(textarea).font;
+
+        const textWidth = context.measureText(textarea.value).width;
+
+        console.log(textWidth)
+        console.log(textarea.clientWidth - 40)
+
+        var aux = text_break
+        if (textWidth > (textarea.clientWidth - 40)) {
+            aux++
+            setText_break(prev => prev += 1)
         }
+        // if (textWidth < (textarea.clientWidth - 40)) {
+        //     aux--
+        //     setText_break(prev => prev -= 1)
+        // }
 
-        //console.log(lineCount)
-
-        const total_lines = lineCount + text_break
-        console.log(text_break)
+        const total_lines = lineCount + aux
+        console.log(total_lines)
 
         if (total_lines <= 8) {
             setHeightSendInput(total_lines == 1 ? 40 : total_lines * 21 + 16)
