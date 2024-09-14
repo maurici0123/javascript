@@ -105,7 +105,7 @@
     height: 15px;
     margin: -15px -32px 0 0;
     text-align: right;
-    color: #eeeeeeb9;
+    color: #eeeeeed6;
 }
 
 .input-area {
@@ -117,14 +117,13 @@
 
 .displayOption {
     position: absolute;
-    right: calc(100% - 200px);
+    right: calc(100% - 182px);
     bottom: calc(100% + 10px);
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
     flex-direction: column;
-    width: 190px;
-    padding: 8px 0;
+    padding: 8px;
     border-radius: 5px;
     background-color: #444;
     box-shadow: 1px 1px 5px #333;
@@ -133,6 +132,7 @@
 .delete-button {
     display: flex;
     align-items: center;
+    width: 100%;
     gap: 8px;
     border-radius: 5px;
     padding: 10px;
@@ -144,7 +144,7 @@
 }
 
 .delete-button span {
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .delete-icon {

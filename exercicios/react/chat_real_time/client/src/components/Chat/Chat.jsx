@@ -1,8 +1,9 @@
 import './ChatStyle.css'
 import React, { useRef, useState, useEffect } from 'react'
-import { VscSend } from "react-icons/vsc"
-import { MdDelete } from "react-icons/md"
 import { IoIosMore } from "react-icons/io";
+import { MdDelete } from "react-icons/md"
+import { GrPowerReset } from "react-icons/gr"
+import { VscSend } from "react-icons/vsc"
 
 export default function Chat(props) {
 
@@ -12,7 +13,6 @@ export default function Chat(props) {
     const [heightSendInput, setHeightSendInput] = useState(40)
     const [displayOption, setDisplayOption] = useState('none')
     const [backgroundColor, setBackgroundColor] = useState('transparent')
-    const [text_break, setText_break] = useState(0)
     const userId = localStorage.getItem('userId')
 
     useEffect(() => {
@@ -49,8 +49,12 @@ export default function Chat(props) {
         window.location.reload()
     }
 
+    const clearMessages = () => {
+        localStorage.setItem('messages',  JSON.stringify([]))
+        window.location.reload()
+    }
+
     const handleSubmit = () => {
-        console.log(messageRef.current.cols)
         const message = messageRef.current.value
         if (!message.trim()) return
 
@@ -61,33 +65,25 @@ export default function Chat(props) {
     }
 
     const input_lines = () => {
-        const textarea = messageRef.current;
+        const textarea = messageRef.current
 
-        const lineCount = textarea.value.split('\n').length;
+        const context = document.createElement('canvas').getContext('2d')
+        context.font = getComputedStyle(textarea).font
 
-        const context = document.createElement('canvas').getContext('2d');
-        context.font = getComputedStyle(textarea).font;
+        const lines = textarea.value.split('\n')
+        let totalLines = 0
 
-        const textWidth = context.measureText(textarea.value).width;
+        lines.forEach(line => {
+            const lineWidth = context.measureText(line).width
+            const estimatedLines = Math.ceil(lineWidth / (textarea.clientWidth - 40))
+            totalLines += estimatedLines || 1
+        })
 
-        console.log(textWidth)
-        console.log(textarea.clientWidth - 40)
-
-        var aux = text_break
-        if (textWidth > (textarea.clientWidth - 40)) {
-            aux++
-            setText_break(prev => prev += 1)
-        }
-        // if (textWidth < (textarea.clientWidth - 40)) {
-        //     aux--
-        //     setText_break(prev => prev -= 1)
-        // }
-
-        const total_lines = lineCount + aux
-        console.log(total_lines)
-
-        if (total_lines <= 8) {
-            setHeightSendInput(total_lines == 1 ? 40 : total_lines * 21 + 16)
+        if (totalLines <= 12) {
+            const newHeight = totalLines == 1 ? 40 : totalLines * 21 + 16;
+            setHeightSendInput(newHeight)
+        } else {
+            setHeightSendInput(12 * 21 + 16)
         }
     }
 
@@ -154,9 +150,13 @@ export default function Chat(props) {
 
                 <div className='input-area'>
                     <div className='displayOption' style={{ display: displayOption }}>
-                        <div className='delete-button' onClick={() => clearDatas()}>
+                    <div className='delete-button' onClick={() => clearMessages()}>
                             <MdDelete className='delete-icon' />
-                            <span>Deletar todos os dados</span>
+                            <span>Deletar as mensagens</span>
+                        </div>
+                        <div className='delete-button' onClick={() => clearDatas()}>
+                            <GrPowerReset className='delete-icon' />
+                            <span>Deletar os dados</span>
                         </div>
                     </div>
 
