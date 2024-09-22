@@ -1,6 +1,6 @@
 import './ChatStyle.css'
 import React, { useRef, useState, useEffect } from 'react'
-import { IoIosMore } from "react-icons/io";
+import { IoIosMore } from "react-icons/io"
 import { MdDelete } from "react-icons/md"
 import { GrPowerReset } from "react-icons/gr"
 import { VscSend } from "react-icons/vsc"
@@ -38,7 +38,7 @@ export default function Chat(props) {
         scrollDown()
     }, [messageList])
 
-    const clearInput = () => messageRef.current.value = ''
+    const clearInput = () => messageRef.current.innerText = ""
 
     const focusInput = () => messageRef.current.focus()
 
@@ -50,12 +50,28 @@ export default function Chat(props) {
     }
 
     const clearMessages = () => {
-        localStorage.setItem('messages',  JSON.stringify([]))
+        localStorage.setItem('messages', JSON.stringify([]))
         window.location.reload()
     }
 
+    const isItImage = () => {
+        const div = messageRef.current
+
+
+        if (div.querySelector('img')) {
+            const img = div.querySelector('img')
+            const imgSrc = img.getAttribute('src')
+            console.log('img')
+            return imgSrc
+        } else {
+            console.log('not img')
+            return div.innerText
+        }
+    }
+
     const handleSubmit = () => {
-        const message = messageRef.current.value
+        const message = isItImage() || ""
+
         if (!message.trim()) return
 
         props.socket.emit('message', message)
@@ -65,22 +81,22 @@ export default function Chat(props) {
     }
 
     const input_lines = () => {
-        const textarea = messageRef.current
+        const contentDiv = messageRef.current
 
         const context = document.createElement('canvas').getContext('2d')
-        context.font = getComputedStyle(textarea).font
+        context.font = getComputedStyle(contentDiv).font
 
-        const lines = textarea.value.split('\n')
+        const lines = contentDiv.innerText.split('\n')
         let totalLines = 0
 
         lines.forEach(line => {
             const lineWidth = context.measureText(line).width
-            const estimatedLines = Math.ceil(lineWidth / (textarea.clientWidth - 40))
+            const estimatedLines = Math.ceil(lineWidth / (contentDiv.clientWidth - 40))
             totalLines += estimatedLines || 1
         })
 
         if (totalLines <= 12) {
-            const newHeight = totalLines == 1 ? 40 : totalLines * 21 + 16;
+            const newHeight = totalLines === 1 ? 40 : totalLines * 21 + 16
             setHeightSendInput(newHeight)
         } else {
             setHeightSendInput(12 * 21 + 16)
@@ -91,11 +107,16 @@ export default function Chat(props) {
         if (e.code === 'Enter') {
             if (e.shiftKey || e.ctrlKey) {
                 const textarea = messageRef.current
-                const start = textarea.selectionStart
-                const end = textarea.selectionEnd
-                textarea.value = `${textarea.value.substring(0, start)}\n${textarea.value.substring(end)}`
-                textarea.selectionStart = textarea.selectionEnd = start + 1
+                const selection = window.getSelection()
+                const range = selection.getRangeAt(0)
 
+                const br = document.createElement('br')
+                range.deleteContents()
+                range.insertNode(br)
+                range.setStartAfter(br)
+                range.setEndAfter(br)
+
+                textarea.focus()
                 input_lines()
             } else {
                 handleSubmit()
@@ -150,7 +171,7 @@ export default function Chat(props) {
 
                 <div className='input-area'>
                     <div className='displayOption' style={{ display: displayOption }}>
-                    <div className='delete-button' onClick={() => clearMessages()}>
+                        <div className='delete-button' onClick={() => clearMessages()}>
                             <MdDelete className='delete-icon' />
                             <span>Deletar as mensagens</span>
                         </div>
@@ -162,7 +183,15 @@ export default function Chat(props) {
 
                     <IoIosMore className='option-icon' style={{ backgroundColor: backgroundColor }} onClick={() => showOption()} />
 
-                    <textarea type="text" cols={40} style={{ height: `${heightSendInput}px` }} className='send-input' ref={messageRef} placeholder='Mensagem' onKeyDown={e => getEnterKey(e)} onChange={input_lines} />
+                    <div
+                        contentEditable='true'
+                        style={{ height: `${heightSendInput}px` }}
+                        className='send-input'
+                        ref={messageRef}
+                        placeholder='Mensagem'
+                        onKeyDown={e => getEnterKey(e)}
+                        onInput={input_lines}
+                    />
 
                     <button className='send-button' onClick={() => handleSubmit()}><VscSend className='send-icon' /></button>
                 </div>
