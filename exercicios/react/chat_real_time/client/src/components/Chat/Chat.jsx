@@ -57,12 +57,10 @@ export default function Chat(props) {
     const isItImage = () => {
         const div = messageRef.current
 
-
         if (div.querySelector('img')) {
             const img = div.querySelector('img')
-            const imgSrc = img.getAttribute('src')
             console.log('img')
-            return imgSrc
+            return img.getAttribute('src')
         } else {
             console.log('not img')
             return div.innerText
@@ -95,6 +93,8 @@ export default function Chat(props) {
             totalLines += estimatedLines || 1
         })
 
+        //console.log(totalLines)
+
         if (totalLines <= 12) {
             const newHeight = totalLines === 1 ? 40 : totalLines * 21 + 16
             setHeightSendInput(newHeight)
@@ -105,25 +105,39 @@ export default function Chat(props) {
 
     const getEnterKey = (e) => {
         if (e.code === 'Enter') {
+            const textarea = messageRef.current 
+
             if (e.shiftKey || e.ctrlKey) {
-                const textarea = messageRef.current
-                const selection = window.getSelection()
-                const range = selection.getRangeAt(0)
+                const selection = window.getSelection() 
+                const range = selection.getRangeAt(0)   
 
-                const br = document.createElement('br')
-                range.deleteContents()
-                range.insertNode(br)
-                range.setStartAfter(br)
-                range.setEndAfter(br)
+                // Cria um <br> (quebra de linha)
+                const br = document.createElement('br') 
 
-                textarea.focus()
-                input_lines()
+                // Insere a quebra de linha na posição do cursor
+                range.deleteContents()  
+                range.insertNode(br)    
+
+                // Move o cursor para logo após o <br>
+                range.setStartAfter(br) 
+                range.setEndAfter(br)   
+
+                // Coloca o cursor na nova linha
+                selection.removeAllRanges() 
+                selection.addRange(range)   
+
+                // Mantém o foco no contentEditable
+                textarea.focus()    
+
+                // Atualiza a altura do textarea
+                input_lines()   
             } else {
-                handleSubmit()
+                // Envia a mensagem
+                handleSubmit()  
             }
-            e.preventDefault()
+            e.preventDefault()   // Evitar o comportamento padrão do Enter
         }
-    }
+    }   
 
     const isLastTwoMessagesSameAuthor = (index) => {
         if (index > 0) {
