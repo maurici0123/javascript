@@ -68,6 +68,7 @@ export default function Chat(props) {
     }
 
     const handleSubmit = () => {
+        console.log('oi')
         const message = isItImage() || ""
 
         if (!message.trim()) return
@@ -93,8 +94,6 @@ export default function Chat(props) {
             totalLines += estimatedLines || 1
         })
 
-        //console.log(totalLines)
-
         if (totalLines <= 12) {
             const newHeight = totalLines === 1 ? 40 : totalLines * 21 + 16
             setHeightSendInput(newHeight)
@@ -105,39 +104,32 @@ export default function Chat(props) {
 
     const getEnterKey = (e) => {
         if (e.code === 'Enter') {
-            const textarea = messageRef.current 
+            handleSubmit()
+            e.preventDefault()
+            // if (e.shiftKey || e.ctrlKey) {
+            //     const textarea = messageRef.current 
+            //     const selection = window.getSelection() 
+            //     const range = selection.getRangeAt(0)   
 
-            if (e.shiftKey || e.ctrlKey) {
-                const selection = window.getSelection() 
-                const range = selection.getRangeAt(0)   
+            //     const br = document.createElement('br') 
 
-                // Cria um <br> (quebra de linha)
-                const br = document.createElement('br') 
+            //     range.deleteContents()  
+            //     range.insertNode(br)    
 
-                // Insere a quebra de linha na posição do cursor
-                range.deleteContents()  
-                range.insertNode(br)    
+            //     range.setStartAfter(br) 
+            //     range.setEndAfter(br)   
 
-                // Move o cursor para logo após o <br>
-                range.setStartAfter(br) 
-                range.setEndAfter(br)   
+            //     selection.removeAllRanges() 
+            //     selection.addRange(range)   
 
-                // Coloca o cursor na nova linha
-                selection.removeAllRanges() 
-                selection.addRange(range)   
+            //     textarea.focus()            
 
-                // Mantém o foco no contentEditable
-                textarea.focus()    
-
-                // Atualiza a altura do textarea
-                input_lines()   
-            } else {
-                // Envia a mensagem
-                handleSubmit()  
-            }
-            e.preventDefault()   // Evitar o comportamento padrão do Enter
+            //     input_lines()   
+            // } else {
+            //     handleSubmit()  
+            // }
         }
-    }   
+    }
 
     const isLastTwoMessagesSameAuthor = (index) => {
         if (index > 0) {
@@ -199,12 +191,12 @@ export default function Chat(props) {
 
                     <div
                         contentEditable='true'
-                        style={{ height: `${heightSendInput}px` }}
+                        style={{ 'min-height': `${heightSendInput}px` }}
                         className='send-input'
                         ref={messageRef}
                         placeholder='Mensagem'
                         onKeyDown={e => getEnterKey(e)}
-                        onInput={input_lines}
+                    //onInput={input_lines}
                     />
 
                     <button className='send-button' onClick={() => handleSubmit()}><VscSend className='send-icon' /></button>
