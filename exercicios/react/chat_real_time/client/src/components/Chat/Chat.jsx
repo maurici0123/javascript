@@ -59,75 +59,31 @@ export default function Chat(props) {
 
         if (div.querySelector('img')) {
             const img = div.querySelector('img')
-            console.log('img')
-            return img.getAttribute('src')
+            return [img.getAttribute('src'), 'image']
         } else {
-            console.log('not img')
-            return div.innerText
+            return [div.innerText, 'message']
         }
     }
 
     const handleSubmit = () => {
         console.log('oi')
-        const message = isItImage() || ""
+        const content = isItImage() || ""
+        if (!content[0].trim()) return
 
-        if (!message.trim()) return
-
-        props.socket.emit('message', message)
+        props.socket.emit('message', content)
         clearInput()
         focusInput()
         setHeightSendInput(40)
     }
 
-    const input_lines = () => {
-        const contentDiv = messageRef.current
-
-        const context = document.createElement('canvas').getContext('2d')
-        context.font = getComputedStyle(contentDiv).font
-
-        const lines = contentDiv.innerText.split('\n')
-        let totalLines = 0
-
-        lines.forEach(line => {
-            const lineWidth = context.measureText(line).width
-            const estimatedLines = Math.ceil(lineWidth / (contentDiv.clientWidth - 40))
-            totalLines += estimatedLines || 1
-        })
-
-        if (totalLines <= 12) {
-            const newHeight = totalLines === 1 ? 40 : totalLines * 21 + 16
-            setHeightSendInput(newHeight)
-        } else {
-            setHeightSendInput(12 * 21 + 16)
-        }
-    }
-
     const getEnterKey = (e) => {
         if (e.code === 'Enter') {
-            handleSubmit()
-            e.preventDefault()
-            // if (e.shiftKey || e.ctrlKey) {
-            //     const textarea = messageRef.current 
-            //     const selection = window.getSelection() 
-            //     const range = selection.getRangeAt(0)   
-
-            //     const br = document.createElement('br') 
-
-            //     range.deleteContents()  
-            //     range.insertNode(br)    
-
-            //     range.setStartAfter(br) 
-            //     range.setEndAfter(br)   
-
-            //     selection.removeAllRanges() 
-            //     selection.addRange(range)   
-
-            //     textarea.focus()            
-
-            //     input_lines()   
-            // } else {
-            //     handleSubmit()  
-            // }
+            if (e.shiftKey || e.ctrlKey) {
+                return
+            } else {
+                handleSubmit()
+                e.preventDefault()
+            }
         }
     }
 
@@ -150,6 +106,14 @@ export default function Chat(props) {
         })
     }
 
+    function textOrImage(message) {
+        if (message.type == 'message') {
+            return <p className='value'>{message.text}</p>
+        } else {
+            return <img src={message.text} alt="image" />
+        }
+    }
+
     return (
         <div className='chat'>
             <div className='chat-area'>
@@ -162,10 +126,9 @@ export default function Chat(props) {
 
                                 <div className={`message ${message.authorId === userId ? 'my-message' : 'other-message'}`}>
                                     <p className={`author ${message.authorId === userId ? 'my-author' : 'other-author'}
-                                        ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}
-                                    </p>
+                                    ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}</p>
 
-                                    <p className='value'>{message.text}</p>
+                                    {textOrImage(message)}
 
                                     <p className='time'>{message.time}</p>
                                 </div>
@@ -191,12 +154,11 @@ export default function Chat(props) {
 
                     <div
                         contentEditable='true'
-                        style={{ 'min-height': `${heightSendInput}px` }}
+                        style={{ 'minHeight': `${heightSendInput}px` }}
                         className='send-input'
                         ref={messageRef}
                         placeholder='Mensagem'
                         onKeyDown={e => getEnterKey(e)}
-                    //onInput={input_lines}
                     />
 
                     <button className='send-button' onClick={() => handleSubmit()}><VscSend className='send-icon' /></button>
