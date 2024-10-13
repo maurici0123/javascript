@@ -10,7 +10,7 @@ export default function Chat(props) {
     const bottomRef = useRef()
     const messageRef = useRef()
     const [messageList, setMessageList] = useState([])
-    const [heightSendInput, setHeightSendInput] = useState(40)
+    const [heightSendInput, setHeightSendInput] = useState(35)
     const [displayOption, setDisplayOption] = useState('none')
     const [backgroundColor, setBackgroundColor] = useState('transparent')
     const userId = localStorage.getItem('userId')
@@ -73,7 +73,7 @@ export default function Chat(props) {
         props.socket.emit('message', content)
         clearInput()
         focusInput()
-        setHeightSendInput(40)
+        setHeightSendInput(35)
     }
 
     const getEnterKey = (e) => {
@@ -106,11 +106,28 @@ export default function Chat(props) {
         })
     }
 
-    function textOrImage(message) {
+    function textOrImage(message, index) {
+
         if (message.type == 'message') {
-            return <p className='value'>{message.text}</p>
+            return (
+                <div className={`messageText ${message.authorId === userId ? 'my-message' : 'other-message'}`}>
+                    <p className={`author ${message.authorId === userId ? 'my-author' : 'other-author'}
+                    ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}</p>
+
+                    <p className='value'>{message.text}</p>
+
+                    <p className='timeText'>{message.time}</p>
+                </div>)
         } else {
-            return <img src={message.text} alt="image" />
+            return (
+                <div className={`messageImage ${message.authorId === userId ? 'my-message' : 'other-message'}`}>
+                    <p className={`author ${message.authorId === userId ? 'my-author' : 'other-author'}
+                    ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}</p>
+
+                    <img src={message.text} alt="image" />
+
+                    <p className='timeImage'>{message.time}</p>
+                </div>)
         }
     }
 
@@ -124,14 +141,7 @@ export default function Chat(props) {
                                 ${message.authorId === userId ? 'my-message-area' : 'other-message-area'}
                                 ${isLastTwoMessagesSameAuthor(index) && 'pasted-message'}`}>
 
-                                <div className={`message ${message.authorId === userId ? 'my-message' : 'other-message'}`}>
-                                    <p className={`author ${message.authorId === userId ? 'my-author' : 'other-author'}
-                                    ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}</p>
-
-                                    {textOrImage(message)}
-
-                                    <p className='time'>{message.time}</p>
-                                </div>
+                                {textOrImage(message, index)}
                             </div>
                         ))
                     }
