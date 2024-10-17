@@ -53,7 +53,7 @@
 }
 
 .messageText {
-    line-height: 20px;
+    line-height: 17px;
     text-align: left;
     max-width: 70%;
     display: inline-block;
@@ -109,10 +109,12 @@
 .valueText{
     word-break: break-word;
     font-size: 14px;
+    margin-bottom: 3px;
 }
 
 .valueImage{
-    width: 105%;
+    width: 100%;
+    border-radius: 5px;
 }
 
 .timeText {
@@ -126,7 +128,7 @@
 .timeImage {
     font-size: 12px;
     height: 13px;
-    margin: -22px 2px 0 0;
+    margin: -22px 4px 0 0;
     padding-bottom: 18px;
     text-align: right;
     color: #ffffff;
@@ -154,7 +156,7 @@
     box-shadow: 1px 1px 5px #333;
 }
 
-.delete-button {
+.more-button {
     display: flex;
     align-items: center;
     width: 100%;
@@ -164,20 +166,20 @@
     cursor: pointer;
 }
 
-.delete-button:hover {
+.more-button:hover {
     background-color: #3c3c3c;
 }
 
-.delete-button span {
+.more-button span {
     font-size: 12px;
 }
 
-.delete-icon {
+.more-icon {
     font-size: 20px;
     color: #eee;
 }
 
-.delete-icon:active {
+.more-icon:active {
     scale: 0.9;
     color: #999;
 }
@@ -239,7 +241,7 @@
     cursor: pointer;
     width: 10%;
     border: none;
-    margin-bottom: 17px;
+    margin-bottom: 14px;
     background-color: transparent;
 }
 

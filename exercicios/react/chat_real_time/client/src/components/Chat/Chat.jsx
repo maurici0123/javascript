@@ -1,6 +1,7 @@
 import './ChatStyle.css'
 import React, { useRef, useState, useEffect } from 'react'
 import { IoIosMore } from "react-icons/io"
+import { FaImage } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md"
 import { GrPowerReset } from "react-icons/gr"
 import { VscSend } from "react-icons/vsc"
@@ -52,6 +53,21 @@ export default function Chat(props) {
     const clearMessages = () => {
         localStorage.setItem('messages', JSON.stringify([]))
         window.location.reload()
+    }
+
+    const imagens = () => {
+        console.log('ola')
+        const fileInput = document.createElement('input')
+        fileInput.type = 'file'
+
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            console.log(file);
+
+            // Faz algo com o arquivo, como criar uma URL Blob
+            const blobURL = URL.createObjectURL(file);
+            document.querySelector('img').src = blobURL; // Exibe a imagem selecionada
+        });
     }
 
     const isItImage = () => {
@@ -114,7 +130,7 @@ export default function Chat(props) {
                     <p className={`author ${message.authorId === userId ? 'my-author' : 'other-author'}
                     ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}</p>
 
-                    <p className='value'>{message.text}</p>
+                    <p className='valueText'>{message.text}</p>
 
                     <p className='timeText'>{message.time}</p>
                 </div>)
@@ -124,7 +140,7 @@ export default function Chat(props) {
                     <p className={`author ${message.authorId === userId ? 'my-author' : 'other-author'}
                     ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}</p>
 
-                    <img src={message.text} alt="image" />
+                    <img src={message.text} alt="image" className='valueImage' />
 
                     <p className='timeImage'>{message.time}</p>
                 </div>)
@@ -150,13 +166,17 @@ export default function Chat(props) {
 
                 <div className='input-area'>
                     <div className='displayOption' style={{ display: displayOption }}>
-                        <div className='delete-button' onClick={() => clearMessages()}>
-                            <MdDelete className='delete-icon' />
-                            <span>Deletar as mensagens</span>
+                        <div className='more-button' onClick={() => imagens()}>
+                            <FaImage className='more-icon' />
+                            <span>Imagens</span>
                         </div>
-                        <div className='delete-button' onClick={() => clearDatas()}>
-                            <GrPowerReset className='delete-icon' />
-                            <span>Deletar os dados</span>
+                        <div className='more-button' onClick={() => clearMessages()}>
+                            <MdDelete className='more-icon' />
+                            <span>Deletar mensagens</span>
+                        </div>
+                        <div className='more-button' onClick={() => clearDatas()}>
+                            <GrPowerReset className='more-icon' />
+                            <span>Deletar dados</span>
                         </div>
                     </div>
 
