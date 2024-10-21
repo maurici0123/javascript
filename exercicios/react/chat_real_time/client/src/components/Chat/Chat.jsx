@@ -50,7 +50,7 @@ export default function Chat(props) {
         window.location.reload()
     }
 
-    const clearMessages = () => {
+    const clearMessages = () => {   
         localStorage.setItem('messages', JSON.stringify([]))
         window.location.reload()
     }
