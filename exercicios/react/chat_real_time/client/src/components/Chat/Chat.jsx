@@ -68,6 +68,7 @@ export default function Chat(props) {
 
             props.socket.emit('message', [blobURL, 'image'])
         }
+        showOption()
     }
 
     const isItImage = () => {
@@ -170,7 +171,6 @@ export default function Chat(props) {
                         <div className='more-button' onClick={() => imagens()}>
                             <FaImage className='more-icon' />
                             <span>Imagens</span>
-
                             <input
                                 type="file"
                                 ref={fileInputRef}
