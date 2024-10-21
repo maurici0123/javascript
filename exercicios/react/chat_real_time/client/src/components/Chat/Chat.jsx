@@ -10,6 +10,7 @@ export default function Chat(props) {
 
     const bottomRef = useRef()
     const messageRef = useRef()
+    const fileInputRef = useRef()
     const [messageList, setMessageList] = useState([])
     const [heightSendInput, setHeightSendInput] = useState(35)
     const [displayOption, setDisplayOption] = useState('none')
@@ -56,18 +57,17 @@ export default function Chat(props) {
     }
 
     const imagens = () => {
-        console.log('ola')
-        const fileInput = document.createElement('input')
-        fileInput.type = 'file'
+        fileInputRef.current.click()
+    }
 
-        fileInput.addEventListener('change', (event) => {
-            const file = event.target.files[0];
-            console.log(file);
+    const handleFileChange = (event) => {
+        const file = event.target.files[0]
+        if (file) {
+            const blobURL = URL.createObjectURL(file)
+            console.log(blobURL)
 
-            // Faz algo com o arquivo, como criar uma URL Blob
-            const blobURL = URL.createObjectURL(file);
-            document.querySelector('img').src = blobURL; // Exibe a imagem selecionada
-        });
+            props.socket.emit('message', [blobURL, 'image'])
+        }
     }
 
     const isItImage = () => {
@@ -82,9 +82,10 @@ export default function Chat(props) {
     }
 
     const handleSubmit = () => {
-        console.log('oi')
         const content = isItImage() || ""
         if (!content[0].trim()) return
+
+        console.log(content)
 
         props.socket.emit('message', content)
         clearInput()
@@ -169,6 +170,13 @@ export default function Chat(props) {
                         <div className='more-button' onClick={() => imagens()}>
                             <FaImage className='more-icon' />
                             <span>Imagens</span>
+
+                            <input
+                                type="file"
+                                ref={fileInputRef}
+                                style={{ display: 'none' }}
+                                onChange={evt => handleFileChange(evt)}
+                            />
                         </div>
                         <div className='more-button' onClick={() => clearMessages()}>
                             <MdDelete className='more-icon' />
