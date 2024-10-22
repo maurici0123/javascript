@@ -51,7 +51,7 @@ export default function Chat(props) {
         window.location.reload()
     }
 
-    const clearMessages = () => {   
+    const clearMessages = () => {
         localStorage.setItem('messages', JSON.stringify([]))
         window.location.reload()
     }
@@ -61,22 +61,43 @@ export default function Chat(props) {
     }
 
     const handleFileChange = (event) => {
-        const file = event.target.files[0]
+        const file = event.target.files[0];
         if (file) {
-            const blobURL = URL.createObjectURL(file)
-            console.log(blobURL)
+            const reader = new FileReader();
 
-            props.socket.emit('message', [blobURL, 'image'])
+            // Evento de carregamento do arquivo
+            reader.onload = function (e) {
+                const imageData = e.target.result; // Base64 ou ArrayBuffer
+                // Envia a imagem via socket
+                //console.log(imageData)
+                props.socket.emit('message', [imageData, 'imageLocal']);
+            };
+
+            // Ler o arquivo como Data URL (Base64)
+            reader.readAsDataURL(file);
         }
+
         showOption()
     }
+
+    const imageLocal = (file) => {
+        return <img src={file} alt="image" className='valueImage'/>
+    }
+
+    // const file = event.target.files[0]
+    //     console.log(file)
+    //     if (file) {
+    //         const blobURL = URL.createObjectURL(file)
+    //         console.log(blobURL)
+    //         props.socket.emit('message', [blobURL, 'imageLocal'])
+    //     }
 
     const isItImage = () => {
         const div = messageRef.current
 
         if (div.querySelector('img')) {
             const img = div.querySelector('img')
-            return [img.getAttribute('src'), 'image']
+            return [img.getAttribute('src'), 'imageURL']
         } else {
             return [div.innerText, 'message']
         }
@@ -85,8 +106,6 @@ export default function Chat(props) {
     const handleSubmit = () => {
         const content = isItImage() || ""
         if (!content[0].trim()) return
-
-        console.log(content)
 
         props.socket.emit('message', content)
         clearInput()
@@ -136,13 +155,23 @@ export default function Chat(props) {
 
                     <p className='timeText'>{message.time}</p>
                 </div>)
-        } else {
+        } else if (message.type == 'imageURL') {
             return (
                 <div className={`messageImage ${message.authorId === userId ? 'my-message' : 'other-message'}`}>
                     <p className={`author ${message.authorId === userId ? 'my-author' : 'other-author'}
                     ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}</p>
 
                     <img src={message.text} alt="image" className='valueImage' />
+
+                    <p className='timeImage'>{message.time}</p>
+                </div>)
+        } else if (message.type == 'imageLocal') {
+            return (
+                <div className={`messageImage ${message.authorId === userId ? 'my-message' : 'other-message'}`}>
+                    <p className={`author ${message.authorId === userId ? 'my-author' : 'other-author'}
+                    ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}</p>
+
+                    {imageLocal(message.text)}
 
                     <p className='timeImage'>{message.time}</p>
                 </div>)
@@ -159,6 +188,7 @@ export default function Chat(props) {
                                 ${message.authorId === userId ? 'my-message-area' : 'other-message-area'}
                                 ${isLastTwoMessagesSameAuthor(index) && 'pasted-message'}`}>
 
+                                {/* {console.log(message)} */}
                                 {textOrImage(message, index)}
                             </div>
                         ))
