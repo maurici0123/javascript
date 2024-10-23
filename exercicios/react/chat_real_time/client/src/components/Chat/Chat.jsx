@@ -7,7 +7,6 @@ import { GrPowerReset } from "react-icons/gr"
 import { VscSend } from "react-icons/vsc"
 
 export default function Chat(props) {
-
     const bottomRef = useRef()
     const messageRef = useRef()
     const fileInputRef = useRef()
@@ -41,10 +40,12 @@ export default function Chat(props) {
     }, [messageList])
 
     const clearInput = () => messageRef.current.innerText = ""
-
+    
     const focusInput = () => messageRef.current.focus()
-
+    
     const scrollDown = () => bottomRef.current.scrollIntoView()
+    
+    const imagens = () => fileInputRef.current.click()
 
     const clearDatas = () => {
         localStorage.clear()
@@ -54,34 +55,25 @@ export default function Chat(props) {
     const clearMessages = () => {
         localStorage.setItem('messages', JSON.stringify([]))
         window.location.reload()
-    }
-
-    const imagens = () => {
-        fileInputRef.current.click()
-    }
+    }       
 
     const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
+        const file = event.target.files[0]
+        console.log(file)
 
-            // Evento de carregamento do arquivo
-            reader.onload = function (e) {
-                const imageData = e.target.result; // Base64 ou ArrayBuffer
-                // Envia a imagem via socket
-                //console.log(imageData)
-                props.socket.emit('message', [imageData, 'imageLocal']);
-            };
+        const blobURL = URL.createObjectURL(file)
+        console.log(blobURL)
 
-            // Ler o arquivo como Data URL (Base64)
-            reader.readAsDataURL(file);
-        }
-
+        props.socket.emit('message', [file, 'imageLocal'])
         showOption()
     }
 
     const imageLocal = (file) => {
-        return <img src={file} alt="image" className='valueImage'/>
+        // console.log(file, 2)
+
+        // const blobURL = URL.createObjectURL(file)
+        // console.log(blobURL)
+        // return <img src={blobURL} alt="image" className='valueImage' />
     }
 
     // const file = event.target.files[0]
@@ -111,6 +103,9 @@ export default function Chat(props) {
         clearInput()
         focusInput()
         setHeightSendInput(35)
+
+        showOption('none')
+        setBackgroundColor('transparent')
     }
 
     const getEnterKey = (e) => {
@@ -122,6 +117,9 @@ export default function Chat(props) {
                 e.preventDefault()
             }
         }
+
+        showOption('none')
+        setBackgroundColor('transparent')
     }
 
     const isLastTwoMessagesSameAuthor = (index) => {
@@ -131,16 +129,20 @@ export default function Chat(props) {
         return false
     }
 
-    const showOption = () => {
-        setDisplayOption(prev => {
-            if (prev == 'none') {
-                setBackgroundColor('#666')
-                return 'flex'
-            } else {
-                setBackgroundColor('transparent')
-                return 'none'
-            }
-        })
+    const showOption = (e = '') => {
+        if (e == 'none') {
+            setDisplayOption('none')
+        } else if (e == '') {
+            setDisplayOption(prev => {
+                if (prev == 'none') {
+                    setBackgroundColor('#666')
+                    return 'flex'
+                } else {
+                    setBackgroundColor('transparent')
+                    return 'none'
+                }
+            })
+        }
     }
 
     function textOrImage(message, index) {
@@ -171,6 +173,7 @@ export default function Chat(props) {
                     <p className={`author ${message.authorId === userId ? 'my-author' : 'other-author'}
                     ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}</p>
 
+                    {/* {console.log(message.text)} */}
                     {imageLocal(message.text)}
 
                     <p className='timeImage'>{message.time}</p>
@@ -188,7 +191,6 @@ export default function Chat(props) {
                                 ${message.authorId === userId ? 'my-message-area' : 'other-message-area'}
                                 ${isLastTwoMessagesSameAuthor(index) && 'pasted-message'}`}>
 
-                                {/* {console.log(message)} */}
                                 {textOrImage(message, index)}
                             </div>
                         ))
