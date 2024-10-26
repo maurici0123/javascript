@@ -1,8 +1,13 @@
 const fileInput = document.querySelector('input');
 fileInput.addEventListener('change', (event) => {
+    console.log(event)
+
     const file = event.target.files[0];
     console.log(file)
+
     const blobURL = URL.createObjectURL(file);
+    console.log(blobURL)
+
     document.querySelector('img').src = blobURL;
 })
 

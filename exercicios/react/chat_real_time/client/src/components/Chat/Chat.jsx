@@ -1,7 +1,7 @@
 import './ChatStyle.css'
 import React, { useRef, useState, useEffect } from 'react'
 import { IoIosMore } from "react-icons/io"
-import { FaImage } from "react-icons/fa6";
+import { FaImage } from "react-icons/fa6"
 import { MdDelete } from "react-icons/md"
 import { GrPowerReset } from "react-icons/gr"
 import { VscSend } from "react-icons/vsc"
@@ -40,11 +40,11 @@ export default function Chat(props) {
     }, [messageList])
 
     const clearInput = () => messageRef.current.innerText = ""
-    
+
     const focusInput = () => messageRef.current.focus()
-    
+
     const scrollDown = () => bottomRef.current.scrollIntoView()
-    
+
     const imagens = () => fileInputRef.current.click()
 
     const clearDatas = () => {
@@ -55,34 +55,33 @@ export default function Chat(props) {
     const clearMessages = () => {
         localStorage.setItem('messages', JSON.stringify([]))
         window.location.reload()
-    }       
+    }
 
     const handleFileChange = (event) => {
         const file = event.target.files[0]
-        console.log(file)
 
-        const blobURL = URL.createObjectURL(file)
-        console.log(blobURL)
+        const reader = new FileReader()
+        reader.onload = (e) => {
+            const base64Data = e.target.result
 
-        props.socket.emit('message', [file, 'imageLocal'])
+            props.socket.emit('message', [base64Data, 'imageLocal'])
+        }
+
+        reader.readAsDataURL(file)
         showOption()
     }
 
     const imageLocal = (file) => {
-        // console.log(file, 2)
-
-        // const blobURL = URL.createObjectURL(file)
-        // console.log(blobURL)
-        // return <img src={blobURL} alt="image" className='valueImage' />
+        return <img src={file} alt="image" className='valueImage' />
     }
 
     // const file = event.target.files[0]
-    //     console.log(file)
-    //     if (file) {
-    //         const blobURL = URL.createObjectURL(file)
-    //         console.log(blobURL)
-    //         props.socket.emit('message', [blobURL, 'imageLocal'])
-    //     }
+    // console.log(file)
+    // if (file) {
+    //     const blobURL = URL.createObjectURL(file)
+    //     console.log(blobURL)
+    //     props.socket.emit('message', [blobURL, 'imageLocal'])
+    // }
 
     const isItImage = () => {
         const div = messageRef.current
@@ -173,7 +172,6 @@ export default function Chat(props) {
                     <p className={`author ${message.authorId === userId ? 'my-author' : 'other-author'}
                     ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}</p>
 
-                    {/* {console.log(message.text)} */}
                     {imageLocal(message.text)}
 
                     <p className='timeImage'>{message.time}</p>
