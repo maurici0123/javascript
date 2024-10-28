@@ -1,19 +1,31 @@
-const openFileExplorerButton = document.querySelector('button'); // Botão para abrir o explorador
+// Função para entrar em tela cheia
+function entrarEmTelaCheia() {
+    const elemento = document.documentElement; // Seleciona o elemento que queremos colocar em tela cheia, aqui o documento inteiro
+    if (elemento.requestFullscreen) {
+        elemento.requestFullscreen();
+    } else if (elemento.mozRequestFullScreen) { // Para Firefox
+        elemento.mozRequestFullScreen();
+    } else if (elemento.webkitRequestFullscreen) { // Para Chrome, Safari e Opera
+        elemento.webkitRequestFullscreen();
+    } else if (elemento.msRequestFullscreen) { // Para IE/Edge
+        elemento.msRequestFullscreen();
+    }
+}
 
-openFileExplorerButton.addEventListener('click', () => {
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    
-    fileInput.addEventListener('change', (event) => {
-        //console.log(event.target.files[0])
+// Função para sair da tela cheia
+function sairDaTelaCheia() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+    }
+}
 
-        const file = event.target.files[0];
-        console.log(file);
-        
-        const blobURL = URL.createObjectURL(file)
-        console.log(blobURL)
-        //document.querySelector('img').src = blobURL; // Exibe a imagem selecionada
-    });
-    
-    fileInput.click();
-});
+// Chamando a função ao clicar em um botão, por exemplo
+document.getElementById("meuBotao1").onclick = entrarEmTelaCheia
+
+document.getElementById("meuBotao2").onclick = sairDaTelaCheia
