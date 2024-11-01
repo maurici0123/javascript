@@ -19,15 +19,17 @@ io.on('connection', socket => {
 
     socket.on('message', content => {
         const time = new Date()
-        const formatNumber = (number) => (number < 10 ? `0${number}` : number)
-        const timestamp = `${formatNumber(time.getHours())}:${formatNumber(time.getMinutes())}`
+        const formatNumber = number => (number < 10 ? `0${number}` : number)
+        
+        const messageTime = `${formatNumber(time.getHours())}:${formatNumber(time.getMinutes())}`
+        const timeOfDay = [time.getFullYear(), time.getMonth()+1, time.getDate()]
 
         io.emit('recive_message', {
             text: content[0],
             type: content[1],
             authorId: socket.data.userId,
             author: socket.data.username,
-            time: timestamp
+            time: [messageTime, timeOfDay]
         })
     })
 })

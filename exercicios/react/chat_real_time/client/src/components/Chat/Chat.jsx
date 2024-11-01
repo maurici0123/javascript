@@ -71,9 +71,9 @@ export default function Chat(props) {
         showOption()
     }
 
-    const imageLocal = (file) => {
-        return <img src={file} alt="image" className='valueImage' />
-    }
+    // const imageLocal = (file) => {
+    //     return <img src={file} alt="image" className='valueImage' />
+    // }
 
     // const file = event.target.files[0]
     // console.log(file)
@@ -154,7 +154,7 @@ export default function Chat(props) {
 
                     <p className='valueText'>{message.text}</p>
 
-                    <p className='timeText'>{message.time}</p>
+                    <p className='timeText'>{message.time[0]}</p>
                 </div>)
         } else if (message.type == 'imageURL') {
             return (
@@ -164,7 +164,7 @@ export default function Chat(props) {
 
                     <img src={message.text} alt="image" className='valueImage' />
 
-                    <p className='timeImage'>{message.time}</p>
+                    <p className='timeImage'>{message.time[0]}</p>
                 </div>)
         } else if (message.type == 'imageLocal') {
             return (
@@ -172,9 +172,9 @@ export default function Chat(props) {
                     <p className={`author ${message.authorId === userId ? 'my-author' : 'other-author'}
                     ${isLastTwoMessagesSameAuthor(index) && 'author-pasted'}`}>{message.author}</p>
 
-                    {imageLocal(message.text)}
+                    <img src={message.text} alt="image" className='valueImage' />
 
-                    <p className='timeImage'>{message.time}</p>
+                    <p className='timeImage'>{message.time[0]}</p>
                 </div>)
         }
     }
