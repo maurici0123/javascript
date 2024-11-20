@@ -1,0 +1,44 @@
+.body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #F0F2EF;
+}
+
+h1 {
+  margin: -20% 0 40px 0;
+  font-size: 40px;
+  color: #231651;
+}
+
+main {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0);
+}
+
+.buttons-default {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+}
+
+.buttons-default button {
+  height: 50%;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #231651;
+  color: #ddd;
+  border: 1px solid #ddd;
+}
+
+.buttons-default button:hover{
+  background-color: #2e1d69;
+}
