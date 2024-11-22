@@ -5,10 +5,11 @@
   align-items: center;
   flex-direction: column;
   background-color: #F0F2EF;
+  filter: blur();
 }
 
-h1 {
-  margin: -20% 0 40px 0;
+.title {
+  margin: -100px 0 40px 0;
   font-size: 40px;
   color: #231651;
 }
@@ -18,13 +19,13 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  border-radius: 8px;
+  border-radius: 3px;
   overflow: hidden;
-  border: 1px solid rgba(0, 0, 0);
 }
 
 .buttons-default {
   display: flex;
+  gap: 2px;
   flex-direction: column;
   height: 100px;
 }
@@ -32,6 +33,7 @@ main {
 .buttons-default button {
   height: 50%;
   font-size: 18px;
+  border-radius: 8px;
   font-weight: 500;
   cursor: pointer;
   background-color: #231651;

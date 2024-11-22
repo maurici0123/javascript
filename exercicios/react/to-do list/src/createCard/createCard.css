@@ -1,0 +1,50 @@
+.card {
+	position: absolute;
+	flex-direction: column;
+	justify-content: space-between;
+	z-index: 1;
+	width: 400px;
+	padding: 20px;
+	border-radius: 8px;
+	background: #F0F2EF;
+	border: 1px solid rgb(82, 82, 82);
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.card label{
+	color: #231651;
+	font-weight: 500;
+}
+
+.inputTask{
+	margin: 10px 0 60px 0;
+	padding: 1px 5px;
+	font-size: 18px;
+	border: none;
+	background: #F0F2EF;
+	border-bottom: 2px solid rgba(0, 0, 0, 0.7);
+}
+
+.inputTask:focus{
+	outline: none;
+	scale: 1.03;
+	box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+}
+
+.buttons-default {
+	display: flex;
+	gap: 2px;
+	flex-direction: column;
+	height: 100px;
+}
+
+.buttons-default button {
+	height: 50%;
+	font-size: 18px;
+	border-radius: 8px;
+	font-weight: 500;
+	cursor: pointer;
+	background-color: #231651;
+	color: #ddd;
+	border: 1px solid #ddd;
+}
