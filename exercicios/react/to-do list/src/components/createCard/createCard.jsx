@@ -2,24 +2,24 @@ import './createCard.css'
 import { useRef, useState, useEffect } from 'react'
 
 function CreateCard(props) {
-	const [hiddenCard, setHiddenCard] = useState('none')
-	const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('tasks')))
 	const messageRef = useRef()
-
-	useEffect(() => {
-		setHiddenCard(props.display)
-	}, [props.display])
+	const [tasks, setTasks] = useState(() => {
+		if (JSON.parse(localStorage.getItem('tasks'))) {
+			return JSON.parse(localStorage.getItem('tasks'))
+		} else {
+			return []
+		}
+	})
 
 	const back = () => {
 		messageRef.current.value = ''
-		setHiddenCard('none')
 		props.setShowCard('none')
 		props.setBlur(0)
 	}
 
-	const creatTask = () => {
+	const createTask = () => {
 		const message = messageRef.current.value
-		if (message !== '') {
+		if (message.trim()) {
 			setTasks(current => {
 				const updatedTasks = [...current, [message, false]]
 				console.log(updatedTasks)
@@ -28,22 +28,23 @@ function CreateCard(props) {
 			})
 			messageRef.current.value = ''
 		}
+		back()
 	}
 
 	const pressEnterKey = (e) => {
-		e.code === 'Enter' && creatTask()
+		e.code === 'Enter' && createTask()
 	}
 
 	return (
-		<div className='card' style={{ display: hiddenCard }}>
+		<div className='card' style={{ display: props.display }}>
 			<label>Nome da tarefa</label>
 			<input
 				type="text" className='inputTask'
 				ref={messageRef} onKeyDown={e => pressEnterKey(e)}
 			/>
 
-			<div className='buttons-default'>
-				<button onClick={() => creatTask()}>Definir Tarefa</button>
+			<div className='buttons-card'>
+				<button onClick={() => createTask()}>Definir Tarefa</button>
 				<button onClick={() => back()}>Voltar</button>
 			</div>
 		</div>

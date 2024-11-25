@@ -1,0 +1,41 @@
+.task-card{
+	display: flex;
+	align-items: center;
+	min-height: 50px;
+	width: 100%;
+	padding: 5px 2px 5px 10px;	
+	margin: 3px 0;
+	border-radius: 5px;
+	font-size: 20px;
+	border: 1px solid #231651;
+	box-shadow: 1px 1px 4px #150d31c7;
+	background-color: #b8a5ff;
+}
+
+.task-text{
+	overflow-wrap: break-word;
+	width: 80%;
+	color: white;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.checkbox{
+	width: 10%;
+}
+
+.delete-button{
+	width: 10%;
+	background-color: transparent;
+	border: none;
+}
+
+.delete-icon{
+	color: #222;
+	font-size: 18px;
+}
+
+.delete-icon:hover{
+	color: #F00;
+	scale: 1.2;
+	cursor: pointer;
+}

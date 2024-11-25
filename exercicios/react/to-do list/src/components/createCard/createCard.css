@@ -4,7 +4,7 @@
 	justify-content: space-between;
 	z-index: 1;
 	width: 400px;
-	padding: 20px;
+	padding: 12px;
 	border-radius: 8px;
 	background: #F0F2EF;
 	border: 1px solid rgb(82, 82, 82);
@@ -31,14 +31,14 @@
 	box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
 }
 
-.buttons-default {
+.buttons-card {
 	display: flex;
 	gap: 2px;
 	flex-direction: column;
 	height: 100px;
 }
 
-.buttons-default button {
+.buttons-card button {
 	height: 50%;
 	font-size: 18px;
 	border-radius: 8px;
@@ -47,4 +47,8 @@
 	background-color: #231651;
 	color: #ddd;
 	border: 1px solid #ddd;
-}
+  }
+  
+  .buttons-card button:hover{
+	background-color: #2e1d69;
+  }
