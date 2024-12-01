@@ -1,14 +1,14 @@
 import './tasksCard.css'
 import { RiDeleteBin5Line } from "react-icons/ri"
-import { useRef, useEffect} from 'react'
+import { useRef, useEffect } from 'react'
 
 function TasksCard(props) {
-
-	useEffect(() =>{
-		console.log('ola')
-	}, [JSON.parse(localStorage.getItem('tasks'))])
-
 	const checkboxRef = useRef()
+
+	useEffect(() => {
+		checkboxRef.current.checked = false
+		console.log(checkboxRef.current.checked)
+	}, [props.reset])
 
 	const deleteCard = () => {
 		const tasks = JSON.parse(localStorage.getItem('tasks'))
@@ -19,7 +19,7 @@ function TasksCard(props) {
 
 	const checkbox = () => {
 		const tasks = JSON.parse(localStorage.getItem('tasks'))
-		tasks[props.index][1] = checkboxRef.current.checked
+		tasks[props.index][1] = !tasks[props.index][1]
 		localStorage.setItem('tasks', JSON.stringify(tasks))
 	}
 

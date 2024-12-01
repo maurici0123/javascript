@@ -5,6 +5,7 @@ import TasksCard from './components/tasksCard/tasksCard'
 
 function App() {
   const [showCard, setShowCard] = useState('none')
+  const [reset, setReset] = useState(false)
   const [Blur, setBlur] = useState(0)
 
   useEffect(() => {
@@ -30,7 +31,10 @@ function App() {
       tasks[index][1] = false
     })
     localStorage.setItem('tasks', JSON.stringify(tasks))
-    }
+    setReset(current => {
+      return !current
+    })
+  }
 
   return (
     <div className='body'>
@@ -39,7 +43,7 @@ function App() {
       <main style={{ filter: `blur(${Blur}px)` }}>
         {
           isThereTasks().map((task, index, array) => {
-            return <TasksCard key={index} task={task} index={index} array={array} />
+            return <TasksCard key={index} task={task} index={index} array={array} reset={reset} />
           })
         }
 

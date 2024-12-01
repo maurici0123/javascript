@@ -19,8 +19,9 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  border-radius: 3px;
   overflow: hidden;
+  border-radius: 3px;
+  transition: .5s;
 }
 
 .buttons-default {
@@ -44,4 +45,11 @@ main {
 
 .buttons-default button:hover{
   background-color: #2e1d69;
+}
+
+@media screen and (max-width: 400px){
+  main{
+    width: 250px;
+    transition: .5s;
+  }
 }

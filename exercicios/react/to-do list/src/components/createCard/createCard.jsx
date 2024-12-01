@@ -3,6 +3,7 @@ import { useRef, useState} from 'react'
 
 function CreateCard(props) {
 	const messageRef = useRef()
+	
 	const [tasks, setTasks] = useState(() => {
 		if (JSON.parse(localStorage.getItem('tasks'))) {
 			return JSON.parse(localStorage.getItem('tasks'))
@@ -22,7 +23,6 @@ function CreateCard(props) {
 		if (message.trim()) {
 			setTasks(current => {
 				const updatedTasks = [...current, [message, false]]
-				//console.log(updatedTasks)
 				localStorage.setItem('tasks', JSON.stringify(updatedTasks))
 				return updatedTasks
 			})
