@@ -24,6 +24,14 @@ function App() {
     }
   }
 
+  const resetTasks = () => {
+    const tasks = JSON.parse(localStorage.getItem('tasks'))
+    tasks.map((task, index) => {
+      tasks[index][1] = false
+    })
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+    }
+
   return (
     <div className='body'>
       <h1 className='title' style={{ filter: `blur(${Blur}px)` }}>To-do list</h1>
@@ -32,15 +40,13 @@ function App() {
         {
           isThereTasks().map((task, index, array) => {
             return <TasksCard key={index} task={task} index={index} array={array} />
-
           })
         }
 
         <div className='buttons-default'>
           <button onClick={() => createTask()}>Criar Tarefa</button>
-          <button>Resetar Tarefas</button>
+          <button onClick={() => resetTasks()}>Resetar Tarefas</button>
         </div>
-
       </main>
 
       <CreateCard

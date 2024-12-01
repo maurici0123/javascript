@@ -1,5 +1,5 @@
 import './createCard.css'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState} from 'react'
 
 function CreateCard(props) {
 	const messageRef = useRef()
@@ -22,7 +22,7 @@ function CreateCard(props) {
 		if (message.trim()) {
 			setTasks(current => {
 				const updatedTasks = [...current, [message, false]]
-				console.log(updatedTasks)
+				//console.log(updatedTasks)
 				localStorage.setItem('tasks', JSON.stringify(updatedTasks))
 				return updatedTasks
 			})
