@@ -4,10 +4,25 @@ import { useRef, useEffect } from 'react'
 
 function TasksCard(props) {
 	const checkboxRef = useRef()
+	const spanRef = useRef()
+
+	useEffect(() => {
+		const tasks = JSON.parse(localStorage.getItem('tasks'))
+
+		if (tasks[props.index][1] === true) {
+			spanRef.current.style.display = "inline-block";
+			spanRef.current.style.transform = "rotate(45deg)";
+			spanRef.current.style.width = "14px";
+			spanRef.current.style.marginLeft = "6px";
+			spanRef.current.style.borderColor = "#2ab383";
+			spanRef.current.style.borderTopColor = "transparent";
+			spanRef.current.style.borderLeftColor = "transparent";
+			spanRef.current.style.borderRadius = "0";
+		}
+	}, [])
 
 	useEffect(() => {
 		checkboxRef.current.checked = false
-		console.log(checkboxRef.current.checked)
 	}, [props.reset])
 
 	const deleteCard = () => {
@@ -29,7 +44,7 @@ function TasksCard(props) {
 			<div className="checkbox-wrapper">
 				<label>
 					<input type="checkbox" ref={checkboxRef} onClick={() => checkbox()} />
-					<span className="checkbox"></span>
+					<span className="checkbox" ref={spanRef}></span>
 				</label>
 			</div>
 			<button className='delete-button' onClick={() => deleteCard()}><RiDeleteBin5Line className='delete-icon' /></button>
