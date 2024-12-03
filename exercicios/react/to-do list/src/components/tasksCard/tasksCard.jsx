@@ -1,29 +1,14 @@
 import './tasksCard.css'
-import { RiDeleteBin5Line } from "react-icons/ri"
+import { RiDeleteBin5Line } from 'react-icons/ri'
 import { useRef, useEffect } from 'react'
 
 function TasksCard(props) {
 	const checkboxRef = useRef()
-	const spanRef = useRef()
-
+	
 	useEffect(() => {
 		const tasks = JSON.parse(localStorage.getItem('tasks'))
-
-		if (tasks[props.index][1] === true) {
-			spanRef.current.style.display = "inline-block";
-			spanRef.current.style.transform = "rotate(45deg)";
-			spanRef.current.style.width = "14px";
-			spanRef.current.style.marginLeft = "6px";
-			spanRef.current.style.borderColor = "#2ab383";
-			spanRef.current.style.borderTopColor = "transparent";
-			spanRef.current.style.borderLeftColor = "transparent";
-			spanRef.current.style.borderRadius = "0";
-		}
-	}, [])
-
-	useEffect(() => {
-		checkboxRef.current.checked = false
-	}, [props.reset])
+		checkboxRef.current.checked = tasks[props.index][1]
+	}, [props.index])
 
 	const deleteCard = () => {
 		const tasks = JSON.parse(localStorage.getItem('tasks'))
@@ -40,14 +25,20 @@ function TasksCard(props) {
 
 	return (
 		<div key={props.index} className='task-card'>
-			<p className='task-text'>{props.task}</p>
+			<p className='task-text'>{props.task[0]}</p>
 			<div className="checkbox-wrapper">
 				<label>
-					<input type="checkbox" ref={checkboxRef} onClick={() => checkbox()} />
-					<span className="checkbox" ref={spanRef}></span>
+					<input
+						type="checkbox"
+						ref={checkboxRef}
+						onClick={() => checkbox()}
+					/>
+					<span className="checkbox"></span>
 				</label>
 			</div>
-			<button className='delete-button' onClick={() => deleteCard()}><RiDeleteBin5Line className='delete-icon' /></button>
+			<button className='delete-button' onClick={() => deleteCard()}>
+				<RiDeleteBin5Line className='delete-icon' />
+			</button>
 		</div>
 	)
 }
