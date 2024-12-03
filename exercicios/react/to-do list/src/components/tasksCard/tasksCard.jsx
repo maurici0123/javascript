@@ -4,11 +4,15 @@ import { useRef, useEffect } from 'react'
 
 function TasksCard(props) {
 	const checkboxRef = useRef()
-	
+
 	useEffect(() => {
-		const tasks = JSON.parse(localStorage.getItem('tasks'))
-		checkboxRef.current.checked = tasks[props.index][1]
-	}, [props.index])
+		if (props.reset) {
+			checkboxRef.current.checked = false;
+		} else {
+			const tasks = JSON.parse(localStorage.getItem('tasks'))
+			checkboxRef.current.checked = tasks[props.index][1]
+		}
+	}, [props.reset, props.index])
 
 	const deleteCard = () => {
 		const tasks = JSON.parse(localStorage.getItem('tasks'))
