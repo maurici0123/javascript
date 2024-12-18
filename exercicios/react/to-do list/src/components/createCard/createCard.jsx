@@ -1,9 +1,15 @@
 import './createCard.css'
-import { useRef, useState} from 'react'
+import { useRef, useState, useEffect } from 'react'
+import { toast } from 'sonner'
 
 function CreateCard(props) {
+	useEffect(() => {
+		props.focus == true && messageRef.current.focus()
+		props.setFocus(false)
+	}, [props.focus])
+
 	const messageRef = useRef()
-	
+
 	const [tasks, setTasks] = useState(() => {
 		if (JSON.parse(localStorage.getItem('tasks'))) {
 			return JSON.parse(localStorage.getItem('tasks'))
@@ -27,6 +33,8 @@ function CreateCard(props) {
 				return updatedTasks
 			})
 			messageRef.current.value = ''
+
+			toast.success('Tarefa criada com sucesso')
 		}
 		back()
 	}
@@ -39,7 +47,7 @@ function CreateCard(props) {
 		<div className='card' style={{ display: props.display }}>
 			<label>Nome da tarefa</label>
 			<input
-				type="text" className='inputTask'
+				type="text" className='inputTask' style={{}}
 				ref={messageRef} onKeyDown={e => pressEnterKey(e)}
 			/>
 

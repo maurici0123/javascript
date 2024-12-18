@@ -7,6 +7,7 @@ function App() {
   const [showCard, setShowCard] = useState('none')
   const [reset, setReset] = useState(false)
   const [Blur, setBlur] = useState(0)
+  const [focus, setFocus] = useState(false)
 
   useEffect(() => {
     localStorage.getItem('tasks') == null && localStorage.setItem('tasks', JSON.stringify([]))
@@ -15,6 +16,7 @@ function App() {
   const createTask = () => {
     setShowCard('flex')
     setBlur(8)
+    setFocus(true)
   }
 
   const isThereTasks = () => {
@@ -57,6 +59,8 @@ function App() {
         display={showCard}
         setShowCard={setShowCard}
         setBlur={setBlur}
+        focus={focus}
+        setFocus={setFocus}
       />
     </div>
   )

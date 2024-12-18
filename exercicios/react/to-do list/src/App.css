@@ -43,7 +43,7 @@ main {
   border: 1px solid #ddd;
 }
 
-.buttons-default button:hover{
+.buttons-default button:hover{ 
   background-color: #2e1d69;
 }
 
