@@ -1,5 +1,3 @@
-const time = new Date()
-
-console.log(time.getFullYear())
-console.log(time.getMonth()+1)
-console.log(time.getDate())
+const moment = require('moment-timezone')
+const currentTime = moment().tz("America/Sao_Paulo").format("HH:mm")
+console.log(currentTime)
