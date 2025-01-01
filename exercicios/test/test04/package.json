@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "luxon": "^3.5.0",
-    "moment-timezone": "^0.5.46"
+    "bootstrap": "^5.3.3"
   }
 }
