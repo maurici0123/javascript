@@ -26,7 +26,7 @@ function App() {
       <HelloWorld/>
       <hr />
 
-      <MyName nome='mau'/>
+      <MyName nome='mau' idade='25' hobby='programar'/>
       <hr />
 
       <Pessoa

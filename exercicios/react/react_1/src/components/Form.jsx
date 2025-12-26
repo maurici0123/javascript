@@ -8,7 +8,7 @@ function Form(){
         console.log(`o usuario ${name} se cadastrou com a senha ${password}`)
     }
 
-    const [name, seTname] = useState()
+    const [name, setName] = useState()
     const [password, setPassword] = useState()
 
     return(
@@ -18,7 +18,7 @@ function Form(){
                 <div>
                     <label htmlFor='name'>nome: </label>
                     <input type='text' id='name' 
-                    onChange={(e) => seTname(e.target.value)} 
+                    onChange={(e) => setName(e.target.value)} 
                     placeholder='nome do usuario'></input>
                 </div>
             
@@ -26,7 +26,6 @@ function Form(){
                     <label htmlFor='password'>senha: </label>
                     <input type='password' id='password'
                     onChange={(e) => setPassword(e.target.value)}
-                     
                     placeholder='senha do usuario'></input>
                 </div>
 
