@@ -1,0 +1,14 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body{
+  min-height: 100vh;
+  min-width: 100vw;
+  background: #eee;
+  background: radial-gradient(125% 125% at 50% 10%, #eee 40%, rgb(80, 30, 255) 100%);
+  z-index: -10;
+}
